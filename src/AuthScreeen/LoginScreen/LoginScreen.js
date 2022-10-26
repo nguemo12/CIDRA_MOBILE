@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import LoginStyle from "./LoginStyle";
 
@@ -50,21 +49,6 @@ const LoginScreen = ({ navigation }) => {
         </View>
     )
 
-=======
-import React from "react"; 
-import LoginStyle from "./LoginStyle";
-
-import {View , Text} from "react-native"
-
-
-const LoginScreen = ()=>{
-    <View>
-        <View style = {{marginTop:40}}>
-            <Text>LoginScreen</Text>
-        </View>
-    </View>
-    
->>>>>>> 5f6e9f9b10d55c46ddc416c21a0d58eafa346b62
 
 
 }
