@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import RegisterStyle from "./RegisterStyles";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
@@ -62,6 +63,14 @@ const RegisterScreen = ({ navigation }) => {
         </View>
 
     )
+=======
+import React from "react"; 
+import RegisterStyle from "./RegisterStyle";
+
+const RegisterScreen = ()=>{
+
+
+>>>>>>> 5f6e9f9b10d55c46ddc416c21a0d58eafa346b62
 }
 
 
