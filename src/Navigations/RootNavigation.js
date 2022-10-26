@@ -6,12 +6,12 @@ import LoginScreen from "../AuthScreeen/LoginScreen/LoginScreen";
 import RegisterScreen from "../AuthScreeen/RegisterScreen/RegisterScreen";
 import RecoveryScreen from "../AuthScreeen/PasswordRecovery/RecoveryScreen";
 import WelcomeScreen from "../AuthScreeen/Welcome/WelcomeScreen";
-const StackPay = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const RootStack =()=>{
     return(
         <NavigationContainer>
-            <StackPay.Navigator
+            <Stack.Navigator 
             screenOptions={{
                 headerStyle:{
                     backgroundColor:'transparent'
@@ -21,12 +21,12 @@ const RootStack =()=>{
             }}
             
             >
-               <StackPay.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>
-               <StackPay.Screen name="login" component={LoginScreen} options ={{headerShown:false}}/>
-               <StackPay.Screen name="register" component={RegisterScreen} options={{headerShown:false}}/>
-               <StackPay.Screen name="Recovery" component={RecoveryScreen} options={{headerShown:false}}/>
-               <StackPay.Screen name="forgotpass" component={ForgotScreen} options={{headerShown:false}}/>
-            </StackPay.Navigator>
+               <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>
+               <Stack.Screen name="login" component={LoginScreen} options ={{headerShown:false}}/>
+               <Stack.Screen name="register" component={RegisterScreen} options={{headerShown:false}}/>
+               <Stack.Screen name="Recovery" component={RecoveryScreen} options={{headerShown:false}}/>
+               <Stack.Screen name="forgotpass" component={ForgotScreen} options={{headerShown:false}}/>
+            </Stack.Navigator>
             </NavigationContainer>
            
         

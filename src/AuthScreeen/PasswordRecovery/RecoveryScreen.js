@@ -5,6 +5,7 @@ import recovery from '../../../assets/images/recovery.jpeg'
 const RecoveryScreen =({navigation}) => {
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
+           
         <View style={{ width: "100%", height: "50%" }} >
             <Image source={recovery} style={{ width: "100%", height: "80%" }} />
         </View>
@@ -22,7 +23,7 @@ const RecoveryScreen =({navigation}) => {
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
             />
-                       <TextInput
+          <TextInput
                 placeholder="8"
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
@@ -39,7 +40,7 @@ const RecoveryScreen =({navigation}) => {
 
             </View>
             <View style={{ width: "90%", height: "15%", flexDirection: "row", justifyContent: "space-around" }}>
-                <TouchableOpacity style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Verify</Text></TouchableOpacity>
+                <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "90%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Verify</Text></TouchableOpacity>
 
             </View>
         </View>

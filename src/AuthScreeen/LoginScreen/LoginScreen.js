@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import LoginStyle from "./LoginStyle";
 
@@ -31,7 +30,7 @@ const LoginScreen = ({ navigation }) => {
                         />
 
                     </View>
-                    <Text style={{ alignSelf: "flex-end", fontSize: 20, marginVertical: "2%", fontWeight: "bold", color: "black", marginRight: "5%" }}>Forgot Password ?</Text>
+                    <Text style={{ alignSelf: "flex-end", fontSize: 20, marginVertical: "2%", fontWeight: "bold", color: "black", marginRight: "5%" }} onPress = {()=>navigation.navigate("forgotpass")}>Forgot Password ?</Text>
 
                     <View style={{ width: "90%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TouchableOpacity style={{ padding: 14, width: "60%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Login</Text></TouchableOpacity>
@@ -50,21 +49,6 @@ const LoginScreen = ({ navigation }) => {
         </View>
     )
 
-=======
-import React from "react"; 
-import LoginStyle from "./LoginStyle";
-
-import {View , Text} from "react-native"
-
-
-const LoginScreen = ()=>{
-    <View>
-        <View style = {{marginTop:40}}>
-            <Text>LoginScreen</Text>
-        </View>
-    </View>
-    
->>>>>>> 5f6e9f9b10d55c46ddc416c21a0d58eafa346b62
 
 
 }
