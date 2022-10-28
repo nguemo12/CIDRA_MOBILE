@@ -15,21 +15,25 @@ const RecoveryScreen =({navigation}) => {
          <View style={{ flexDirection:"row", justifyContent:"space-around"}}>
             <TextInput
                 placeholder="8"
+                placeholderTextColor={"grey"}
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
             />
                        <TextInput
                 placeholder="8"
+                placeholderTextColor={"grey"}
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
             />
           <TextInput
                 placeholder="8"
+                placeholderTextColor={"grey"}
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
             />
                       <TextInput
                 placeholder="8"
+                placeholderTextColor={"grey"}
                 style={{ borderBottomWidth: 1, width: "15%", height: "80%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black", fontSize:22 }}
 
             />

@@ -12,9 +12,10 @@ const ForgotScreen = ({navigation}) => {
             <View style={{ width: "100%", height: "50%" }}>
                 <Text style={{ fontSize: 28, fontWeight: "bold", color: "#379AE1", textAlign: "center", marginTop: "10%" }}>OTP Verification</Text>
                 <Text style={{ textAlign: "center", color: "black" }}>We will send a one Time Password {"\n"} to the following mobile phone number </Text>
-                <Text style={{ marginLeft: "5%", marginTop: "2%" }}>Enter phone number :</Text>
+                <Text style={{ marginLeft: "5%", marginTop: "2%", color: "grey" }}>Enter phone number :</Text>
                 <TextInput
                     placeholder="+237"
+                    placeholderTextColor={"grey"}
                     style={{ borderBottomWidth: 1, width: "90%", height: "15%", borderRadius: 5, marginTop: "2%", marginLeft: "5%", padding: 16, color: "black" }}
 
                 />

@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native"
 import * as React from "react"
 import ForgotScreen from "./src/AuthScreeen/ForgotPassword/ForgotScreen"
 import LoginScreen from "./src/AuthScreeen/LoginScreen/LoginScreen"
@@ -9,8 +10,11 @@ import RootStack from "./src/Navigations/RootNavigation"
 
 
 
+
 export default function App(){
   return (
+    <NavigationContainer>
     <RootStack />
+    </NavigationContainer>
   )
 }
