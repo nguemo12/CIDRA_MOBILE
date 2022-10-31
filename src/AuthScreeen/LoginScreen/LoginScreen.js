@@ -1,3 +1,7 @@
+/* eslint-disable semi */
+/* eslint-disable quotes */
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 import React from "react";
 import LoginStyle from "./LoginStyle";
 
@@ -11,10 +15,10 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, backgroundColor: "#379AE1" }}>
             <View style={{ width: "100%", height: "25%", backgroundColor: "#379AE1", flexDirection:"row" }}>
-               
+
                 <Image source={backlog} style={{ width: "100%", height: "100%" }} />
                 <Image source={logo} style={{ width: "30%", height: "61%" , alignSelf:"center", borderRadius:50, resizeMode:"cover", marginLeft:-150 }} />
-                
+
             </View>
             <View style={{ backgroundColor: "white", width: "100%", height: "75%", borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
                 <ScrollView style={{ height: "100%" }}>
