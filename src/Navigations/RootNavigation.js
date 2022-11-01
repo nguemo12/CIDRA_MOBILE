@@ -23,13 +23,13 @@ const RootStack =()=>{
             }}
             
             >
-               <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>
-               <Stack.Screen name="login" component={LoginScreen} options ={{headerShown:false}}/>
-               <Stack.Screen name="register" component={RegisterScreen} options={{headerShown:false}}/>
-               <Stack.Screen name="Recovery" component={RecoveryScreen} options={{headerShown:false}}/>
-               <Stack.Screen name="forgotpass" component={ForgotScreen} options={{headerShown:false}}/>
-               <Stack.Screen name="fingerprint" component={FingerPrintScreen} options={{headerShown:false}}/>
-               <Stack.Screen name="BottomNav" component={BottomNav} options={{headerShown:false}}/>
+               <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ title:''}}/>
+               <Stack.Screen name="login" component={LoginScreen} options={{ title:''}} />
+               <Stack.Screen name="register" component={RegisterScreen}  options={{ title:''}}/>
+               <Stack.Screen name="Recovery" component={RecoveryScreen}  options={{ title:''}}/>
+               <Stack.Screen name="forgotpass" component={ForgotScreen}  options={{ title:''}}/>
+               <Stack.Screen name="fingerprint" component={FingerPrintScreen} options={{ title:''}}/>
+               <Stack.Screen name="BottomNav" component={BottomNav}  options={{ title:''}}/>
             </Stack.Navigator>
         
            

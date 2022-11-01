@@ -7,8 +7,9 @@ import LoginStyle from "./LoginStyle";
 
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
 import backlog from '../../../assets/images/loginback.png'
-import  finger from '../../../assets/images/firngerprint.png'
+import  finger from '../../../assets/images/fingerprint1.png'
 import logo from "../../../assets/images/cidrablue.png"
+import eyeoff from "../../../assets/images/eyeoff.png"
 
 const LoginScreen = ({ navigation }) => {
 const [email, setEmail] = useState("")
@@ -52,15 +53,16 @@ const submitForm = async(email, password) =>{
                         onChangeText={(text) => setEmail(text)}
                         value={email}
                     />
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-between" }}>
+                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TextInput
                             placeholder="password"
                             placeholderTextColor={"grey"}
-                            style={{ width: "100%", height: "100%", padding: 16, color: "black" }}
+                            style={{ width: "90%", height: "100%", color: "black" }}
                             secureTextEntry={true}
                             onChangeText={(pass) => setPassword(pass)}
                             value={password}
                         />
+                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }}  />
 
                     </View>
                     <Text style={{ alignSelf: "flex-end", fontSize: 20, marginVertical: "2%", fontWeight: "bold", color: "black", marginRight: "5%" }} onPress = {()=>navigation.navigate("forgotpass")}>Forgot Password ?</Text>
