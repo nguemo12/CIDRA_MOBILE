@@ -1,15 +1,11 @@
 
-import React, {useState} from "react";
+import React from "react";
 import RegisterStyle from "./RegisterStyles";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
 import backlog from '../../../assets/images/regiback.png'
 import logo from "../../../assets/images/cidrablue.png"
-import eyeoff from "../../../assets/images/eyeoff.png"
+
 const RegisterScreen = ({ navigation }) => {
-    const   [Email, setEmail] = useState('');
-    const   [Username, setUsername] = useState('');
-    const   [Password, setPassword] = useState('');
-    const   [ConfirmPassword, setConfirmPassword] = useState('');
     return (
 
         <View style={{ flex: 1, backgroundColor: "#379AE1" }}>
@@ -27,37 +23,31 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Username"
                         placeholderTextColor={"grey"}
-                        value={Username}
                         style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor={"grey"}
-                        value={Email}
                         style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
+                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-between" }}>
                         <TextInput
                             placeholder="password"
                             placeholderTextColor={"grey"}
-                            value = {Password}
-                            style={{ width: "90%", height: "100%", color: "black" }}
+                            style={{ width: "100%", height: "100%", padding: 16, color: "black" }}
                             secureTextEntry={true}
                         />
-                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }}  />
 
                     </View>
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
+                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-between" }}>
                         <TextInput
-                            placeholder="Confirm password"
-                            value={ConfirmPassword}
+                            placeholder=" Confirm Password"
                             placeholderTextColor={"grey"}
-                            style={{ width: "90%", height: "100%", color: "black" }}
+                            style={{ width: "100%", height: "100%", padding: 16, color: "black" }}
                             secureTextEntry={true}
                         />
-                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }}  />
 
                     </View>
 
