@@ -6,10 +6,10 @@ import fprint from "../../../assets/images/fingerprint.jpeg"
 const FingerPrintScreen = ({navigation}) => {
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
-            <View style={{ width: "95%", height: "20%", justifyContent: "space-between", flexDirection: "row",  }}>
+            <View style={{ width: "95%", height: "20%", justifyContent: "space-between", flexDirection: "row" }}>
 
-              
-               <Text style={{fontSize:1}} onPress={()=>navigation.navigate("login")}>back</Text>
+               <Image source={back} style={{ width: "10%", height: "20%", alignSelf:"center" }}  />
+               <Text  onPress={()=>navigation.navigate("login")}>back</Text>
 
                 <Image source={logo} style={{ width: "30%", height: "80%", alignSelf: "center", borderRadius: 50, resizeMode: "cover" }} />
 

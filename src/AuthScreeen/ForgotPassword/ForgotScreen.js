@@ -20,7 +20,7 @@ const ForgotScreen = ({navigation}) => {
 
                 />
                 <View style={{ width: "90%", height: "15%", flexDirection: "row", justifyContent: "space-around" }}>
-                    <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, alignSelf:"center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress= {()=>navigation.navigate("Recovery")}>Send OTP</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress= {()=>navigation.navigate("Recovery")}>Send OTP</Text></TouchableOpacity>
 
                 </View>
             </View>
