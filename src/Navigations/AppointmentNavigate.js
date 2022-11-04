@@ -7,6 +7,8 @@ import Dashbaord from "../Dashboard/Dashbaord";
 import ChatScreen from "../Dashboard/ChatScreen";
 import Contacts from "../Dashboard/Contacts";
 import Appointment from "../Dashboard/Appointment";
+import AppointmentList from "../Dashboard/AppointmentList";
+import DrugList from "../Dashboard/DrugList";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,7 +34,14 @@ const AppointNavigate =()=>{
                 alignSelf: 'center', color:'black', fontSize:18
                }}}/>
                <Stack.Screen name="Messages" component={ChatScreen} options={{ title:''}}/>
-               <Stack.Screen name="Appointment" component={Appointment} options={{ title:'Appointment', headerTitleStyle:{
+
+               <Stack.Screen name="Appointment" component={Appointment} options={{ title:'Book Appointment', headerTitleStyle:{
+                alignSelf: 'center', color:'black', fontSize:18
+               }}}/>
+                <Stack.Screen name="AppointmentList" component={AppointmentList} options={{ title:'List of Appointment', headerTitleStyle:{
+                alignSelf: 'center', color:'black', fontSize:18
+               }}}/>
+               <Stack.Screen name="DrugList" component={DrugList} options={{ title:'List of Drugs', headerTitleStyle:{
                 alignSelf: 'center', color:'black', fontSize:18
                }}}/>
             </Stack.Navigator>

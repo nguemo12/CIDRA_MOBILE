@@ -20,12 +20,12 @@ const ChatNavigate =()=>{
                 headerTintColor: '#1F29397',
                 headerTransparent:true,
             }}
-            
+            initialRouteName = "Chat"
             >
               
                <Stack.Screen name="BottomNav" component={BottomNav} options={{ title:''}}/>
                <Stack.Screen name="dashboard" component={Dashbaord} options={{ title:''}}/>
-               <Stack.Screen name="Chat" component={Contacts} options={{ title:'Chat', headerTitleStyle:{
+               <Stack.Screen name="Chat" component={Contacts} options={{ title:'', headerTitleStyle:{
                 alignSelf: 'center', color:'black', fontSize:18
                }}}/>
                <Stack.Screen name="Messages" component={ChatScreen} options={{ title:''}}/>
