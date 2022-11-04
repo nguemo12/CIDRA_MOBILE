@@ -8,7 +8,7 @@ import hospital4 from "../../assets/images/hospital4.jpg"
 import DR1T from "../../assets/images/dr1.jpg"
 import DR2T from "../../assets/images/dr2.jpg"
 import DR4T from "../../assets/images/dr4.jpg"
-import DatePicker from 'react-native-datepicker';
+
 
 const Appointment = ({ navigation }) => {
     const [date, setDate] = useState('09-10-2021');
@@ -147,46 +147,18 @@ const Appointment = ({ navigation }) => {
 
                     }
                 </ScrollView>
-                <Text style={{ marginLeft: "3%", color: "black" }}>Choose an appointment date</Text>
-                <Text style={{ marginLeft: "3%", color: "black", fontSize: 24, fontWeight: "bold" }}> Oct. 2022 </Text>
-                <DatePicker
-                    style={styles.datePickerStyle}
-                    date={date}
-                    mode="date"
-                    placeholder="select date"
-                    format="DD/MM/YYYY"
-                    minDate="01-01-1900"
-                    maxDate="01-01-2000"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            right: -5,
-                            top: 4,
-                            marginLeft: 0,
-                        },
-                        dateInput: {
-                            borderColor: "gray",
-                            alignItems: "flex-start",
-                            borderWidth: 0,
-                            borderBottomWidth: 1,
-                        },
-                        placeholderText: {
-                            fontSize: 17,
-                            color: "gray",
-                            marginLeft: '3%'
-                        },
-                        dateText: {
-                            fontSize: 17,
-                            marginLeft: '3%'
-                        }
-                    }}
-                    onDateChange={(date) => {
-                        setDate(date);
-                    }}
-                />
-                <TouchableOpacity style={{ padding: 8, width: "60%", height: "6%", backgroundColor: "#379AE1", borderRadius: 50, flexDirection: 'row', alignSelf: "center", marginVertical: "2%" }}>
+                <Text style={{ marginLeft: "3%", color: "black" }}>Enter an appointment date</Text>
+              
+                <TextInput
+                        placeholder="21/03/2022 12:30"
+                        placeholderTextColor={"grey"}
+                        
+                        
+                        style={{ borderBottomWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "8%", marginLeft: "5%", padding: 16, color: "black" }}
+
+                    />
+               
+                <TouchableOpacity style={{ padding: 4, width: "60%", height: "6%", backgroundColor: "#379AE1", borderRadius: 50, flexDirection: 'row', alignSelf: "center", marginVertical: "2%", justifyContent:"center" }}>
                     <Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} >Book Appointment</Text></TouchableOpacity>
             </ScrollView>
 

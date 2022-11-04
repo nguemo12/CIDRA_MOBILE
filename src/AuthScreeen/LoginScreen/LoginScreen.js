@@ -5,6 +5,19 @@ import backlog from '../../../assets/images/loginback.png'
 import finger from '../../../assets/images/fingerprint1.png'
 import logo from "../../../assets/images/cidrablue.png"
 import eyeoff from "../../../assets/images/eyeoff.png"
+import {
+    ToastAndroid,
+    Platform,
+    AlertIOS,
+  } from 'react-native';
+
+function notifyMessage(msg) {
+if (Platform.OS === 'android') {
+  ToastAndroid.show(msg, ToastAndroid.SHORT)
+} else {
+  AlertIOS.alert(msg);
+}
+}
 
 
 const LoginScreen = ({ navigation }) => {
@@ -63,7 +76,7 @@ const LoginScreen = ({ navigation }) => {
                     <Text style={{ alignSelf: "flex-end", fontSize: 20, marginVertical: "2%", fontWeight: "bold", color: "black", marginRight: "5%" }} onPress={() => navigation.navigate("forgotpass")}>Forgot Password ?</Text>
 
                     <View style={{ width: "90%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TouchableOpacity style={{ padding: 8, width: "60%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress={() => navigation.navigate("BottomNav")}>Login</Text></TouchableOpacity>
+                        <TouchableOpacity style={{ padding: 8, width: "60%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress={() => navigation.navigate("BottomNav") } >Login</Text></TouchableOpacity>
                         <TouchableOpacity style={{ padding: 8, width: "35%", height: "100%", backgroundColor: "#003D79", borderRadius: 50, flexDirection: "row", justifyContent: "space-between" }}><Text style={{ color: "white", fontSize: 12 }} onPress={() => navigation.navigate("fingerprint")}>or with {"\n"} fingerprint</Text>
                             <Image source={finger} style={{ width: "100%", height: "100%", alignSelf: "center" }} />
                         </TouchableOpacity>

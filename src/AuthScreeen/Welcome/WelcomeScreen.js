@@ -1,7 +1,7 @@
 import React from "react";
 import WelcomeStyle from "./WelcomeStyle";
 import { View, Text, Image, TouchableOpacity } from "react-native"
-import backlog from "../../../assets/images/welcome.jpeg"
+import backlog from "../../../assets/images/hello.png"
 import logo from "../../../assets/images/cidrablue.png"
 
 const WelcomeScreen = ({navigation}) => {

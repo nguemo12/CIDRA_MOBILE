@@ -9,61 +9,31 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  View
+  View, TouchableHighlight
 } from 'react-native';
+import moment from 'moment';
  
 //import DatePicker from the package we installed
-import DatePicker from 'react-native-datepicker';
+import DateTimePicker from "@react-native-community/datetimepicker"
 
-const DatePick = () => {
-const date2 = new Date();
-
-let day = date2.getDate();
-let month = date2.getMonth() + 1;
-let year = date2.getFullYear();
-
-// This arrangement can be altered based on how we want the date's format to appear.
-let currentDate = `${day}-${month}-${year}`;
-console.log(currentDate); // "17-6-2022" 
-  const [date, setDate] = useState('09-10-2020');
- 
+const DatePick = (props) => {
+const {textStyle} = props
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          React Native Date Picker – 
-          To Pick the Date using Native Calendar
-        </Text>
-        <DatePicker
-          style={styles.datePickerStyle}
-          date={date} // Initial date from state
-          mode="date" // The enum of date, datetime and time
-          placeholder="select date"
-          format="DD-MM-YYYY"
-          minDate="01-01-2016"
-          maxDate="01-01-2019"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              //display: 'none',
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <TouchableHighlight
+    activeOpacity={0}
+    onPress = {()=>console.log("open datepicker")}
+    >
+      <Text style={textStyle}>{moment().format("YYYY-MM-DD")}</Text>
+
+    </TouchableHighlight>
+   
   );
 };
+DatePick.defaultProps ={
+  
+};
+
+
  
 export default DatePick;
  
