@@ -1,15 +1,38 @@
 
 import React, {useState} from "react";
 import RegisterStyle from "./RegisterStyles";
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { HttpStatusCode } from "axios";
+
 import backlog from '../../../assets/images/regiback.png'
 import logo from "../../../assets/images/cidrablue.png"
+
 import eyeoff from "../../../assets/images/eyeoff.png"
+
 const RegisterScreen = ({ navigation }) => {
-    const   [Email, setEmail] = useState('');
-    const   [Username, setUsername] = useState('');
-    const   [Password, setPassword] = useState('');
-    const   [ConfirmPassword, setConfirmPassword] = useState('');
+    const [data,setData]=useState({
+        email: '', 
+        name:'', 
+        password: '',
+        confirmPassword:'',
+        telephone:''
+       })
+       const handleSubmit= ()=>{
+        console.log(data)
+        fetch('119.13.107.181:5000/user/create', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          data
+        })
+      });
+      navigation.navigate("login")
+    }
+      
+     
     return (
 
         <View style={{ flex: 1, backgroundColor: "#379AE1" }}>
@@ -27,32 +50,44 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Username"
                         placeholderTextColor={"grey"}
-                        value={Username}
+                        onChange={(e)=> (setData({...data,name: e.target.value}))} 
+                        value={data.name}
                         style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
+
+                    />
+                     <TextInput
+                        placeholder="Telephone"
+                        placeholderTextColor={"grey"}
+                        onChange={(e)=> (setData({...data,telephone: e.target.value}))} 
+                        value={data.telephone}
+                        style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor={"grey"}
-                        value={Email}
-                        style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
+                        onChange={(e)=> (setData({...data,email: e.target.value}))} 
+                        value={data.email}
+                        style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
+                    <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TextInput
                             placeholder="password"
                             placeholderTextColor={"grey"}
-                            value = {Password}
+                            onChange={(e)=> (setData({...data,password: e.target.value}))} 
+                        value={data.password}
                             style={{ width: "90%", height: "100%", color: "black" }}
                             secureTextEntry={true}
                         />
                         <Image source={eyeoff} style={{ width: "10%", height: "60%" }}  />
 
                     </View>
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
+                    <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8,  marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TextInput
                             placeholder="Confirm password"
-                            value={ConfirmPassword}
+                            onChange={(e)=> (setData({...data,confirmPassword: e.target.value}))} 
+                            value={data.confirmPassword}
                             placeholderTextColor={"grey"}
                             style={{ width: "90%", height: "100%", color: "black" }}
                             secureTextEntry={true}
@@ -62,8 +97,8 @@ const RegisterScreen = ({ navigation }) => {
                     </View>
 
 
-                    <View style={{ width: "90%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TouchableOpacity style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress={() => navigation.navigate("login")}>Register</Text></TouchableOpacity>
+                    <View style={{ width: "100%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
+                        <TouchableOpacity style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent:"center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress={handleSubmit}>Register</Text></TouchableOpacity>
 
                     </View>
                     <View style={{ width: "50%", height: "5%", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "5%", marginLeft: "20%" }}>

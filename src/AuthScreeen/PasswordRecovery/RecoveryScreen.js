@@ -43,8 +43,8 @@ const RecoveryScreen =({navigation}) => {
                 <Text style={{color:"#379AE1"}} > Resend code</Text>
 
             </View>
-            <View style={{ width: "90%", height: "15%", flexDirection: "row", justifyContent: "space-around" }}>
-                <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "90%", backgroundColor: "#379AE1", borderRadius: 50, alignSelf:"center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress= {()=>navigation.navigate("BottomNav")}>Verify</Text></TouchableOpacity>
+            <View style={{ width: "100%", height: "18%", flexDirection: "row", justifyContent: "space-around" }}>
+                <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "90%", backgroundColor: "#379AE1", borderRadius: 50, alignSelf:"center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress= {()=>navigation.navigate("login")}>Verify</Text></TouchableOpacity>
 
             </View>
         </View>
