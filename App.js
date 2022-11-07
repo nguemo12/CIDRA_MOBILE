@@ -1,22 +1,12 @@
-import { NavigationContainer } from "@react-navigation/native"
 import * as React from "react"
-import AppointmentList from "./src/Dashboard/AppointmentList"
-import DrugList from "./src/Dashboard/DrugList"
+import { NavigationContainer } from "@react-navigation/native"
 
-import RootStack from "./src/Navigations/RootNavigation"
-
-
-
-
+import AuthStack from "./src/routes/routes"
 
 export default function App(){
   return (
     <NavigationContainer>
-    <RootStack />
-  </NavigationContainer>
-   
-   
-    
-   
+      <AuthStack />
+    </NavigationContainer>
   )
 }
