@@ -50,7 +50,7 @@ const RegisterScreen = ({ navigation }) => {
             return
         }
 
-        navigation.navigate("login")
+       
     }
        const handleSubmit= ()=>{
         console.log(data)
@@ -63,7 +63,9 @@ const RegisterScreen = ({ navigation }) => {
         body: JSON.stringify({
           data
         })
+        
       });
+      navigation.navigate("login")
      
     }
 
