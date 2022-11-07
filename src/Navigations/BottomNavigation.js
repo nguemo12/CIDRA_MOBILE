@@ -35,7 +35,7 @@ const BottomNav = () => {
             initialRouteName="Dashboard">
                 
                 <TabNavigator.Screen name="Dashboard" component={AppointNavigate} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
-                <TabNavigator.Screen name="Activites" component={Activities} options= {{headerShown:false, tabBarIcon: () => <Image source={linechart} style={{width:30, height: 30}}/>}}  />        
+                       
                 <TabNavigator.Screen name="Contacts" component={ChatNavigate} options= {{title:'Chats', headerTitleAlign:"center", tabBarIcon: () => <Image source={comment} style={{width:30, height: 30}}/>}}  />         
             </TabNavigator.Navigator>
 

@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     textInput: {
        
         marginHorizontal: 10,
-        tintColor:"black"
+        tintColor:"black", 
+        height:"10%"
     },
     icons: {
         marginHorizontal: 10,
