@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
-import recovery from '../../../assets/images/recovery.jpeg'
+import recovery from '../../../../assets/images/recovery.jpeg'
 
 const RecoveryScreen =({navigation}) => {
     

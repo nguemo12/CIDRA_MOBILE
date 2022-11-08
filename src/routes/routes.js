@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     createNativeStackNavigator
 } from "@react-navigation/native-stack";
@@ -9,12 +10,12 @@ import {
 } from "@react-navigation/material-top-tabs";
 import AppRoutes from "./routeNames";
 
-import ForgotScreen from "../screens/AuthScreen/ForgotPassword/ForgotScreen";
-import LoginScreen from "../screens/AuthScreen/LoginScreen/LoginScreen";
-import RegisterScreen from "../screens/AuthScreen/RegisterScreen/RegisterScreen";
-import RecoveryScreen from "../screens/AuthScreen/PasswordRecovery/RecoveryScreen";
-import WelcomeScreen from "../screens/AuthScreen/Welcome/WelcomeScreen";
-import FingerPrintScreen from "../screens/AuthScreen/FingerPrint/FingerPrintScreen";
+import ForgotScreen from "../screens/AuthScreeen/ForgotPassword/ForgotScreen";
+import LoginScreen from "../screens/AuthScreeen/LoginScreen/LoginScreen";
+import RegisterScreen from "../screens/AuthScreeen/RegisterScreen/RegisterScreen";
+import RecoveryScreen from "../screens/AuthScreeen/PasswordRecovery/RecoveryScreen";
+import WelcomeScreen from "../screens/AuthScreeen/Welcome/WelcomeScreen";
+import FingerPrintScreen from "../screens/AuthScreeen/FingerPrint/FingerPrintScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

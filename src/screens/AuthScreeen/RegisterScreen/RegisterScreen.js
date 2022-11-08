@@ -4,19 +4,15 @@ import RegisterStyle from "./RegisterStyles";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { HttpStatusCode } from "axios";
 
-import backlog from '../../../assets/images/regiback.png'
-import logo from "../../../assets/images/cidrablue.png"
+import backlog from '../../../../assets/images/regiback.png'
+import logo from "../../../../assets/images/cidrablue.png"
+import Toast from 'react-native-toast-message'
+import { registerAction } from "../../../services/methods/authentication"
+import Loader from "../../../Components/Loader"
 
-import eyeoff from "../../../assets/images/eyeoff.png"
+import eyeoff from "../../../../assets/images/eyeoff.png"
 
 const RegisterScreen = ({ navigation }) => {
-    const [data,setData]=useState({
-        email: '', 
-        name:'', 
-        password: '',
-        confirmPassword:'',
-        telephone:''
-       })
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -27,45 +23,81 @@ const RegisterScreen = ({ navigation }) => {
     const [isPasswordEmpty, setIsPasswordEmpty] = useState(false)
     const [isConfirmPasswordEmpty, setIsConfirmPasswordEmpty] = useState(false)
     const [isTelephoneEmpty, setIsTelephoneEmpty] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const checkEmptyText = () => {
         if (email == "") {
             setIsEmailEmpty(true)
-            return
+            return true
         }
         if (name == "") {
             setIsNameEmpty(true)
-            return
+            return true
         }
         if (password == "") {
             setIsPasswordEmpty(true)
-            return
+            return true
         }
         if (confirmPassword == "") {
             setIsConfirmPasswordEmpty(true)
-            return
+            return true
         }
         if (telephone == "") {
             setIsTelephoneEmpty(true)
-            return
+            return true
         }
 
        
     }
-       const handleSubmit= ()=>{
-        console.log(data)
-        fetch('119.13.107.181:5000/user/create', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          data
-        })
-        
-      });
-      navigation.navigate("login")
+    const checkValidEmail = (input) => {
+        console.log(input)
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (input.match(validRegex)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    const register = () => {
+        if (!checkEmptyText()) {
+            console.log("email",email)
+            if (checkValidEmail(email)) {
+                if (password == confirmPassword) {
+                    setLoading(true)
+                    const postData = {
+                        'email': email,
+                        'password': password,
+                        'telephone': telephone,
+                        'name': name,
+                        'confirmPassword': confirmPassword
+                    }
+                    registerAction(postData).then((response) => {
+                        console.log(response);
+                    }).catch((error) => {
+                        console.log(response);
+                    }).finally(() => setLoading(false))
+                    
+                } else {
+                    Toast.show({
+                        type: 'error',
+                        text1: 'confirmPassword Does Not match',
+                    });
+                    
+                }
+                
+            } else {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Email is not valid',
+                });
+            }
+            
+        } else {
+            Toast.show({
+                type: 'error',
+                text1: 'All fields are required',
+            });
+        }
      
     }
 
@@ -73,6 +105,12 @@ const RegisterScreen = ({ navigation }) => {
     return (
 
         <View style={{ flex: 1, backgroundColor: "#379AE1" }}>
+                
+            <Loader loading={loading} />
+
+            <View  style={{ zIndex: 1000 }}>
+                <Toast />
+            </View>
             <View style={{ width: "100%", height: "25%", backgroundColor: "#379AE1", flexDirection: "row", justifyContent: "space-around" }}>
                 <Image source={backlog} style={{ width: "50%", height: "100%" }} />
                 <Image source={logo} style={{ width: "30%", height: "61%", alignSelf: "center", borderRadius: 50, resizeMode: "cover" }} />
@@ -92,7 +130,7 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Username"
                         placeholderTextColor={"grey"}
-                        onChange={(text)=>setName(text)}
+                        onChangeText={(text)=>setName(text)}
                         value={name}
                         style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
@@ -105,8 +143,11 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Telephone"
                         placeholderTextColor={"grey"}
-                        onChange={(text)=>setTelephone(text)}
-                        value={telephone}
+                        onChangeText={(text)=>setTelephone(text)}
+                        value = {
+                            telephone
+                        }
+                        keyboardType = "numeric"
                         style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
@@ -118,21 +159,19 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor={"grey"}
-                       onChange ={(text)=>setEmail(text)}
+                       onChangeText = {
+                           (text) => setEmail(text)
+                       }
+                       keyboardType = "email-address"
                         value={email}
                         style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
                     />
-                     {
-                        isPasswordEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    }
                     <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TextInput
                             placeholder="password"
                             placeholderTextColor={"grey"}
-                            onChange ={(text)=>setPassword(text)}
+                            onChangeText ={(text)=>setPassword(text)}
                             value={password}
                             style={{ width: "90%", height: "100%", color: "black" }}
                             secureTextEntry={true}
@@ -148,7 +187,7 @@ const RegisterScreen = ({ navigation }) => {
                     <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
                         <TextInput
                             placeholder="Confirm password"
-                            onChange ={(text)=>setConfirmPassword(text)}
+                            onChangeText ={(text)=>setConfirmPassword(text)}
                             value={confirmPassword}
                             placeholderTextColor={"grey"}
                             style={{ width: "90%", height: "100%", color: "black" }}
@@ -160,7 +199,7 @@ const RegisterScreen = ({ navigation }) => {
 
 
                     <View style={{ width: "100%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TouchableOpacity style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress={()=>checkEmptyText()}>Register</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>register()} style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} >Register</Text></TouchableOpacity>
 
                     </View>
                     <View style={{ width: "50%", height: "5%", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "5%", marginLeft: "20%" }}>

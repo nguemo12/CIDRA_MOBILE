@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
-import backlog from '../../../assets/images/loginback.png'
-import finger from '../../../assets/images/fingerprint1.png'
-import logo from "../../../assets/images/cidrablue.png"
-import eyeoff from "../../../assets/images/eyeoff.png"
+import backlog from '../../../../assets/images/loginback.png'
+import finger from '../../../../assets/images/fingerprint1.png'
+import logo from "../../../../assets/images/cidrablue.png"
+import eyeoff from "../../../../assets/images/eyeoff.png"
+import Toast from 'react-native-toast-message'
 import {
     ToastAndroid,
     Platform,
     AlertIOS,
   } from 'react-native';
+import AppRoutes from "../../../routes/routeNames"
 
 function notifyMessage(msg) {
 if (Platform.OS === 'android') {
-  ToastAndroid.show(msg, ToastAndroid.SHORT)
+  ToastAndroid.show(msg, 3000)
 } else {
   AlertIOS.alert(msg);
 }
@@ -25,7 +27,17 @@ const LoginScreen = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [isEmailEmpty, setIsEmailEmpty] = useState(false)
     const [isPasswordEmpty, setIsPasswordEmpty] = useState(false)
+
+    const checkValidEmail = (input) => {
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (input.match(validRegex)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     const checkEmptyText = () => {
+        console.log("checkEmptyText");
         if (email == "") {
             setIsEmailEmpty(true)
             return
@@ -35,15 +47,27 @@ const LoginScreen = ({ navigation }) => {
             setIsPasswordEmpty(true)
             return
         }
+        console.log("not em");
+// Toast.show({
+//     type: 'error',
+//     text1: 'Validation Error',
+// });
+
+            // notifyMessage("hello am im")
+
       
 
-        navigation.navigate("BottomNav")
+        // navigation.navigate("BottomNav")
     }
 
    
     
     return (
         <View style={{ flex: 1, backgroundColor: "#379AE1" }}>
+            
+                <View  style={{ zIndex: 1000 }}>
+                    <Toast />
+                </View>
             <View style={{ width: "100%", height: "25%", backgroundColor: "#379AE1", flexDirection: "row" }}>
 
                 <Image source={backlog} style={{ width: "100%", height: "100%" }} />
@@ -96,7 +120,7 @@ const LoginScreen = ({ navigation }) => {
                     </View>
                     <View style={{ width: "50%", height: "5%", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "10%", marginLeft: "20%" }}>
                         <Text style={{ color: "grey" }} >Not having an account?</Text>
-                        <Text style={{ color: "#379AE1" }} onPress={() => navigation.navigate("register")}> Register</Text>
+                        <Text style={{ color: "#379AE1" }} onPress={() => navigation.navigate(AppRoutes.RegisterScreen)}> Register</Text>
                     </View>
                 </ScrollView>
             </View>
