@@ -92,7 +92,7 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Username"
                         placeholderTextColor={"grey"}
-                        onChange={(text)=>setName(text)}
+                        onChangeText={(text)=>setName(text)}
                         value={name}
                         style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
@@ -105,7 +105,7 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Telephone"
                         placeholderTextColor={"grey"}
-                        onChange={(text)=>setTelephone(text)}
+                        onChangeText={(text)=>setTelephone(text)}
                         value={telephone}
                         style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
@@ -118,7 +118,7 @@ const RegisterScreen = ({ navigation }) => {
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor={"grey"}
-                       onChange ={(text)=>setEmail(text)}
+                       onChangeText ={(text)=>setEmail(text)}
                         value={email}
                         style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
 
@@ -132,7 +132,7 @@ const RegisterScreen = ({ navigation }) => {
                         <TextInput
                             placeholder="password"
                             placeholderTextColor={"grey"}
-                            onChange ={(text)=>setPassword(text)}
+                            onChangeText ={(text)=>setPassword(text)}
                             value={password}
                             style={{ width: "90%", height: "100%", color: "black" }}
                             secureTextEntry={true}

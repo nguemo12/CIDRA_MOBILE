@@ -13,7 +13,7 @@ import {
 
 function notifyMessage(msg) {
 if (Platform.OS === 'android') {
-  ToastAndroid.show(msg, ToastAndroid.SHORT)
+  ToastAndroid.show(msg, 3000)
 } else {
   AlertIOS.alert(msg);
 }
@@ -35,7 +35,8 @@ const LoginScreen = ({ navigation }) => {
             setIsPasswordEmpty(true)
             return
         }
-      
+
+        notifyMessage("login successfull")
 
         navigation.navigate("BottomNav")
     }
