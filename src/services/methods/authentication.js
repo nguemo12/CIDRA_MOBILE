@@ -1,5 +1,4 @@
-// import axiosInstance from "../axios/axiosInstance"
-import axios from 'axios'
+import axiosInstance from "../axios/axiosInstance"
 
 export async function loginAction(postData) {
     try {
@@ -12,7 +11,7 @@ export async function loginAction(postData) {
 export const registerAction = async (postData) => {
     try {
         console.log(postData)
-        let response = await axios.post('user/create', postData)
+        let response = await axiosInstance.post('user/create', postData)
         return response
     } catch (error) {
         throw error

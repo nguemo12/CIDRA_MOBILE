@@ -11,6 +11,8 @@ import { registerAction } from "../../../services/methods/authentication"
 import Loader from "../../../Components/Loader"
 
 import eyeoff from "../../../../assets/images/eyeoff.png"
+import InputField from "../../../Components/InputField";
+import PrimaryButton from "../../../Components/PrimaryButton";
 
 const RegisterScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -71,12 +73,13 @@ const RegisterScreen = ({ navigation }) => {
                         'name': name,
                         'confirmPassword': confirmPassword
                     }
-                    registerAction(postData).then((response) => {
-                        console.log(response);
-                    }).catch((error) => {
-                        console.log(response);
-                    }).finally(() => setLoading(false))
-                    
+                    console.log(postData)
+                    // registerAction(postData).then((response) => {
+                    //     console.log(response);
+                    // }).catch((error) => {
+                    //     console.log(response);
+                    // }).finally(() => setLoading(false))
+                    setLoading(false)
                 } else {
                     Toast.show({
                         type: 'error',
@@ -116,96 +119,36 @@ const RegisterScreen = ({ navigation }) => {
                 <Image source={logo} style={{ width: "30%", height: "61%", alignSelf: "center", borderRadius: 50, resizeMode: "cover" }} />
             </View>
 
-            <View style={{ backgroundColor: "white", width: "100%", height: "80%", borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-                <ScrollView style={{ height: "100%" }}>
+            <View style={{
+                    backgroundColor: "white",
+                    height: "100%",
+                    width: "100%",
+                    borderTopEndRadius: 20,
+                    borderTopStartRadius: 20,
+                }} >
+                <ScrollView>
+                    <View>
+
                     <Text style={{ color: "#379AE1", fontWeight: "bold", fontSize: 30, marginTop: "1%", marginLeft: "5%" }} >Register</Text>
                     <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, marginTop: "1%", marginLeft: "5%" }} >Get started</Text>
 
                     <Text style={{ color: "grey", fontSize: 20, marginTop: "1%", marginLeft: "5%" }} >Create your account to {"\n"} have access to our features</Text>
-                    {
-                        isNameEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    }
-                    <TextInput
-                        placeholder="Username"
-                        placeholderTextColor={"grey"}
-                        onChangeText={(text)=>setName(text)}
-                        value={name}
-                        style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
+                   
+                    <InputField placeholder="Name" onChangeText={setName} value={name} secureTextEntry={false} keyboardType="default" />
+                    <InputField placeholder="Telephone" onChangeText={setTelephone} value={telephone} secureTextEntry={false} keyboardType="numeric" />
+                    <InputField placeholder="Email" onChangeText={setEmail} value={email} secureTextEntry={false} keyboardType="email-address" />
+                    <InputField placeholder="Password" onChangeText={setPassword} value={password} secureTextEntry={true} keyboardType="default" />
+                    <InputField placeholder="Confirm Password" onChangeText={setConfirmPassword} value={confirmPassword} secureTextEntry={true} keyboardType="default" />
 
-                    />
-                     {
-                        isTelephoneEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    }
-                    <TextInput
-                        placeholder="Telephone"
-                        placeholderTextColor={"grey"}
-                        onChangeText={(text)=>setTelephone(text)}
-                        value = {
-                            telephone
-                        }
-                        keyboardType = "numeric"
-                        style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
+                    
 
-                    />
-                    {
-                        isEmailEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    }
-                    <TextInput
-                        placeholder="Email"
-                        placeholderTextColor={"grey"}
-                       onChangeText = {
-                           (text) => setEmail(text)
-                       }
-                       keyboardType = "email-address"
-                        value={email}
-                        style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
-
-                    />
-                    <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TextInput
-                            placeholder="password"
-                            placeholderTextColor={"grey"}
-                            onChangeText ={(text)=>setPassword(text)}
-                            value={password}
-                            style={{ width: "90%", height: "100%", color: "black" }}
-                            secureTextEntry={true}
-                        />
-                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }} />
-
-                    </View>
-                    {
-                        isConfirmPasswordEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    }
-                    <View style={{ borderWidth: 1, width: "90%", height: "8%", borderRadius: 5, padding: 8, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TextInput
-                            placeholder="Confirm password"
-                            onChangeText ={(text)=>setConfirmPassword(text)}
-                            value={confirmPassword}
-                            placeholderTextColor={"grey"}
-                            style={{ width: "90%", height: "100%", color: "black" }}
-                            secureTextEntry={true}
-                        />
-                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }} />
-
-                    </View>
-
-
-                    <View style={{ width: "100%", height: "10%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TouchableOpacity onPress={()=>register()} style={{ padding: 14, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center" }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} >Register</Text></TouchableOpacity>
-
-                    </View>
-                    <View style={{ width: "50%", height: "5%", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "5%", marginLeft: "20%" }}>
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                         <Text style={{ color: "grey" }}>Already have an account?</Text>
                         <Text style={{ color: "#379AE1" }} onPress={()=>navigation.navigate("login")}> Login</Text>
                     </View>
+                    <PrimaryButton width="60%" text="Register" onClick={() => register()} /> 
+                    </View>
+
                 </ScrollView>
             </View>
 
