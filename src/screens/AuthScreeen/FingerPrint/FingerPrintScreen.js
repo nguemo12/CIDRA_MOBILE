@@ -16,9 +16,9 @@ const FingerPrintScreen = ({navigation}) => {
             </View>
             <View style={{ backgroundColor: "white", width: "100%", height: "70%" }}>
                
-                    <Text style={{ color: "#379AE1", fontWeight: "bold", fontSize: 30, marginLeft: "5%" }} >Log-in</Text>
-                    <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, marginTop: "2%", marginLeft: "5%" }} >with your fingerprint scanner</Text>
-                    <Text style={{ color: "grey", fontWeight: "bold", fontSize: 20, marginLeft: "5%" }} >Use touch ID for {"\n"} faster & easy access to your account</Text>
+                    <Text style={{ color: "#379AE1", fontSize: 30, marginLeft: "5%", fontFamily: 'NunitoSans-Black' }} >Log-in</Text>
+                    <Text style={{ color: "black", fontFamily: 'NunitoSans-Black', fontSize: 20,  marginLeft: "5%" }} >with your fingerprint scanner</Text>
+                    <Text style={{ color: "grey", fontSize: 18, marginLeft: "5%",marginTop: "2%", fontFamily: 'NunitoSans-Bold'  }} >Use touch ID for{"\n"}faster & easy access to your account</Text>
                     <Image source={fprint} style={{ width: "50%", height: "39%", alignSelf: "center", marginVertical: '10%', resizeMode:"cover" }} />
                     <Text style={{ color: "#003D79", fontWeight: "bold", fontSize: 30,  textAlign: "center" }} >62%</Text>
                     <Text style={{ color: "black", fontWeight: "bold",  textAlign: "center" }} >scanning...</Text>

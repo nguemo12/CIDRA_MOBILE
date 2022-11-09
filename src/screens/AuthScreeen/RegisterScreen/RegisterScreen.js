@@ -144,7 +144,7 @@ const RegisterScreen = ({ navigation }) => {
 
                     <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", top: 4}}>
                         <Text style={{ color: "grey", fontFamily: 'NunitoSans-Regular'  }}>Already have an account?</Text>
-                        <Text style={{ color: "#379AE1", fontFamily: 'NunitoSans-Bold'  }} onPress={()=>navigation.navigate("login")}> Login</Text>
+                        <Text style={{ color: "#379AE1", fontFamily: 'NunitoSans-Bold'  }} onPress={()=>navigation.navigate(AppRoutes.LoginScreen)}> Login</Text>
                     </View>
                     <View style={{bottom: 9}}>
                         <PrimaryButton width="60%" text="Register" onClick={() => register()} /> 
