@@ -1,16 +1,18 @@
 
 import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable, StyleSheet, TextInput } from "react-native"
-import calenda from "../../assets/icons/calendar10.png"
-import qrcode from "../../assets/icons/qrcode.png"
+import calenda from "../../../assets/icons/calendar10.png"
+import qrcode from "../../../assets/icons/qrcode.png"
 
-import chart from "../../assets/icons/plus.png"
-import coins from "../../assets/icons/cash.png";
-import fine from "../../assets/icons/f.png";
-import dot from "../../assets/icons/dot.png";
-import DRT2 from "../../assets/images/medical.jpg";
-import hospital4 from "../../assets/images/hospital4.jpg"
-const DrugList = ({ navigation }) => {
+import chart from "../../../assets/icons/plus.png"
+import coins from "../../../assets/icons/cash.png";
+import fine from "../../../assets/icons/f.png";
+import dot from "../../../assets/icons/dot.png";
+import DRT2 from "../../../assets/images/medical.jpg";
+import hospital4 from "../../../assets/images/hospital4.jpg"
+const DrugListScreen = ({
+        navigation
+    }) => {
     return (
         <View style={{ flex: 1, marginTop: "8%", }}>
             <ScrollView style={{ height: "100%" }}>
@@ -74,4 +76,4 @@ const styles = StyleSheet.create({
         right: 20
     }
 });
-export default DrugList;
+export default DrugListScreen;

@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { Text, View, TextInput, Pressable, StyleSheet, Image, ScrollView } from "react-native";
-import laughbeam from "../../assets/icons/laughbeam.png";
-import send from "../../assets/icons/send.png";
-import camera from "../../assets/icons/camera4.png";
-import videocall from "../../assets/icons/videocall.png";
-import phone from "../../assets/icons/phone.png";
-import DRT2 from "../../assets/images/dr2.jpg";
-import paperclip from "../../assets/icons/paperclip1.png";
-import microphone from "../../assets/icons/microphone8.png";
+import laughbeam from "../../../assets/icons/laughbeam.png";
+import send from "../../../assets/icons/send.png";
+import camera from "../../../assets/icons/camera4.png";
+import videocall from "../../../assets/icons/videocall.png";
+import phone from "../../../assets/icons/phone.png";
+import DRT2 from "../../../assets/images/dr2.jpg";
+import paperclip from "../../../assets/icons/paperclip1.png";
+import microphone from "../../../assets/icons/microphone8.png";
 
 
 const ChatScreen = ({ navigation }) => {

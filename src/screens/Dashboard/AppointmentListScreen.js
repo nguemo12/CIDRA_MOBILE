@@ -1,15 +1,15 @@
 
 import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable, StyleSheet, TextInput } from "react-native"
-import calenda from "../../assets/icons/calendar10.png"
-import time from "../../assets/icons/time.png"
+import calenda from "../../../assets/icons/calendar10.png"
+import time from "../../../assets/icons/time.png"
 
-import chart from "../../assets/icons/plus.png"
-import profile from "../../assets/images/profile.jpg";
-import dot from "../../assets/icons/dot.png";
-import DRT2 from "../../assets/images/dr2.jpg";
-import hospital4 from "../../assets/images/hospital4.jpg"
-const AppointmentList = ({navigation}) => {
+import chart from "../../../assets/icons/plus.png"
+import profile from "../../../assets/images/profile.jpg";
+import dot from "../../../assets/icons/dot.png";
+import DRT2 from "../../../assets/images/dr2.jpg";
+import hospital4 from "../../../assets/images/hospital4.jpg"
+const AppointmentListScreen = ({navigation}) => {
     return (
         <View style={{ flex: 1, marginTop: "8%", }}>
             <ScrollView style={{ height: "100%" }}>
@@ -319,4 +319,4 @@ const styles = StyleSheet.create({
         right: 20
     }
 });
-export default AppointmentList;
+export default AppointmentListScreen;

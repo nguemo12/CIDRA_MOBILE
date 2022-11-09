@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, Pressable, TouchableOpacity, TextInput } from "react-native"
 import { ScrollView } from 'react-native';
-import search from "../../assets/icons/search24.png"
-import hospital2 from "../../assets/images/hospital2.jpg"
-import hospital from "../../assets/images/hospital.jpg"
-import hospital4 from "../../assets/images/hospital4.jpg"
-import DR1T from "../../assets/images/dr1.jpg"
-import DR2T from "../../assets/images/dr2.jpg"
-import DR4T from "../../assets/images/dr4.jpg"
+import search from "../../../assets/icons/search24.png"
+import hospital2 from "../../../assets/images/hospital2.jpg"
+import hospital from "../../../assets/images/hospital.jpg"
+import hospital4 from "../../../assets/images/hospital4.jpg"
+import DR1T from "../../../assets/images/dr1.jpg"
+import DR2T from "../../../assets/images/dr2.jpg"
+import DR4T from "../../../assets/images/dr4.jpg"
 
 
-const Appointment = ({ navigation }) => {
+const AppointmentScreen = ({
+        navigation
+    }) => {
     const [date, setDate] = useState('09-10-2021');
 
     const content = [
@@ -194,4 +196,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Appointment;
+export default AppointmentScreen;

@@ -51,16 +51,6 @@ const LoginScreen = ({ navigation }) => {
             return
         }
         console.log("not em");
-// Toast.show({
-//     type: 'error',
-//     text1: 'Validation Error',
-// });
-
-            // notifyMessage("hello am im")
-
-      
-
-        // navigation.navigate("BottomNav")
     }
 
    
