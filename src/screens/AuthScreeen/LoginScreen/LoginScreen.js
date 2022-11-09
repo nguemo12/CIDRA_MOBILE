@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
-import backlog from '../../../assets/images/loginback.png'
-import finger from '../../../assets/images/fingerprint1.png'
-import logo from "../../../assets/images/cidrablue.png"
-import eyeoff from "../../../assets/images/eyeoff.png"
-import { colors } from "../../../assets/colors/colors";
-import CustomPasswordInput from "../../Components/passwordinput";
-import CustomTextInput from "../../Components/textinput";
 import backlog from '../../../../assets/images/loginback.png'
 import finger from '../../../../assets/images/fingerprint1.png'
 import logo from "../../../../assets/images/cidrablue.png"
 import eyeoff from "../../../../assets/images/eyeoff.png"
+import { colors } from "../../../../assets/colors/colors";
+import CustomPasswordInput from "../../../Components/passwordinput";
+import CustomTextInput from "../../../Components/textinput";
 import Toast from 'react-native-toast-message'
 import {
     ToastAndroid,

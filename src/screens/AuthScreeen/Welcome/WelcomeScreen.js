@@ -1,9 +1,9 @@
 import React from "react";
 import WelcomeStyle from "./WelcomeStyle";
 import { View, Text, Image, TouchableOpacity, StatusBar } from "react-native"
-import backlog from "../../../assets/images/bg.png"
-import logo from "../../../assets/images/cidrablue.png"
-import { colors } from "../../../assets/colors/colors";
+import backlog from "../../../../assets/images/bg.png"
+import logo from "../../../../assets/images/cidrablue.png"
+import { colors } from "../../../../assets/colors/colors";
 
 const WelcomeScreen = ({navigation}) => {
     return (
