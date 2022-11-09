@@ -1,22 +1,20 @@
 import React from "react";
 import WelcomeStyle from "./WelcomeStyle";
-import { View, Text, Image, TouchableOpacity } from "react-native"
-import backlog from "../../../assets/images/hello.png"
+import { View, Text, Image, TouchableOpacity, StatusBar } from "react-native"
+import backlog from "../../../assets/images/bg.png"
 import logo from "../../../assets/images/cidrablue.png"
+import { colors } from "../../../assets/colors/colors";
 
 const WelcomeScreen = ({navigation}) => {
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
-            <View style={{ width: "100%", height: "40%", }} >
-            <Image source={backlog} style={{ width: "100%", height: "100%" }} />
-            </View>
-            <View style={{ backgroundColor: "whitesmoke", width: "100%", height: "60%", borderTopEndRadius: 150, borderTopStartRadius: 150 }}>
-                <Image source={logo} style={{ width: "47%", height: "40%" , alignSelf:"center", borderRadius:50, resizeMode:"cover", marginTop:"3%" }} />
-                <Text style={{ textAlign: "center", fontSize: 40, fontWeight: "bold", marginTop: "10%", color: "#003D79" }}> Welcome to Cidra </Text>
-                <Text style={{ textAlign: "center", color: "#003D79" }}> Your MR Medical healthCare assistant</Text>
-                <View style={{ width: "100%", height: "18%", flexDirection: "row", justifyContent: "space-around" }}>
-                    <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "10%", height: "80%", backgroundColor: "#379AE1", borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress = {()=> navigation.push("login")}>Get Started</Text></TouchableOpacity>
-
+            <StatusBar hidden />
+            <Image source={backlog} style={{ width: "100%", height: 500 }} resizeMode='cover'/>
+            <View style={{bottom: 30}}>
+                <Text style={{ textAlign: "center", fontSize: 35, color: colors.darkBlue, fontFamily: 'NunitoSans-ExtraBold', marginTop: 10 }}> Welcome to Cidra </Text>
+                <Text style={{ textAlign: "center", color: "#003D79", fontFamily: 'NunitoSans-Regular', marginTop: 5, fontSize: 16 }}> Your MR Medical healthCare assistant</Text>
+                <View style={{ width: "100%", height: "18%", flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
+                    <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "10%", height: 60, backgroundColor: colors.lightBlue, borderRadius: 50 }}><Text style={{ color: "white", textAlign: "center", fontSize: 20, fontFamily: 'NunitoSans-Black' }} onPress = {()=> navigation.push("login")}>Get Started</Text></TouchableOpacity>
                 </View>
             </View>
 

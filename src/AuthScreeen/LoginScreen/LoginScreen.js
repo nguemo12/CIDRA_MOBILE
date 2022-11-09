@@ -5,6 +5,9 @@ import backlog from '../../../assets/images/loginback.png'
 import finger from '../../../assets/images/fingerprint1.png'
 import logo from "../../../assets/images/cidrablue.png"
 import eyeoff from "../../../assets/images/eyeoff.png"
+import { colors } from "../../../assets/colors/colors";
+import CustomPasswordInput from "../../Components/passwordinput";
+import CustomTextInput from "../../Components/textinput";
 import {
     ToastAndroid,
     Platform,
@@ -61,29 +64,19 @@ const LoginScreen = ({ navigation }) => {
                             <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
                             : null
                     }
-                    <TextInput
-                        placeholder="Email"
-                        placeholderTextColor={"grey"}
-                       onChange ={(text)=>setEmail(text)}
-                        value={email}
-                        style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, marginTop: "5%", marginLeft: "5%", padding: 16, color: "black" }}
+                        <View>
 
-                    />
+                     <CustomTextInput value={email} autoCorrect={false} keyboardType='email-address' onChangeText={(text)=> setEmail(text)} placeholder='e.g someone@mailservice.com' icon='email-outline'/>
+                     
+                     </View>
                      {
                         isPasswordEmpty ?
                             <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
                             : null
                     }
-                    <View style={{ borderWidth: 1, width: "90%", height: "10%", borderRadius: 5, padding: 8, marginTop: "10%", marginLeft: "5%", flexDirection: "row", justifyContent: "space-around" }}>
-                        <TextInput
-                            placeholder="password"
-                            placeholderTextColor={"grey"}
-                            onChange ={(text)=>setPassword(text)}
-                            value={password}
-                            style={{ width: "90%", height: "100%", color: "black" }}
-                            secureTextEntry={true}
-                        />
-                        <Image source={eyeoff} style={{ width: "10%", height: "60%" }} />
+                    <View>
+                    
+                    <CustomPasswordInput value={password} autoCorrect={false}  onChangeText={(text) => setPassword(text)} placeholder='Enter your password'/>
 
                     </View>
                     <Text style={{ alignSelf: "flex-end", fontSize: 20, marginVertical: "2%", fontWeight: "bold", color: "black", marginRight: "5%" }} onPress={() => navigation.navigate("forgotpass")}>Forgot Password ?</Text>
