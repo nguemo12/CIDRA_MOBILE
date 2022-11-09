@@ -129,10 +129,10 @@ const RegisterScreen = ({ navigation }) => {
                 <ScrollView>
                     <View>
 
-                    <Text style={{ color: "#379AE1", fontWeight: "bold", fontSize: 30, marginTop: "1%", marginLeft: "5%" }} >Register</Text>
-                    <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, marginTop: "1%", marginLeft: "5%" }} >Get started</Text>
+                    <Text style={{ color: "#379AE1", fontSize: 30, marginTop: "1%", marginLeft: "5%", fontFamily: 'NunitoSans-Black' }} >Register</Text>
+                    <Text style={{ color: "black", fontSize: 20, marginTop: "1%", marginLeft: "5%", fontFamily: 'NunitoSans-Bold' }} >Get started</Text>
 
-                    <Text style={{ color: "grey", fontSize: 20, marginTop: "1%", marginLeft: "5%" }} >Create your account to {"\n"} have access to our features</Text>
+                    <Text style={{ color: "grey", fontSize: 17, marginTop: "1%", marginLeft: "5%", fontFamily: 'NunitoSans-Regular' }} >Create your account to have{"\n"}access to our features</Text>
                    
                     <InputField placeholder="Name" onChangeText={setName} value={name} secureTextEntry={false} keyboardType="default" />
                     <InputField placeholder="Telephone" onChangeText={setTelephone} value={telephone} secureTextEntry={false} keyboardType="numeric" />
@@ -142,11 +142,13 @@ const RegisterScreen = ({ navigation }) => {
 
                     
 
-                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-                        <Text style={{ color: "grey" }}>Already have an account?</Text>
-                        <Text style={{ color: "#379AE1" }} onPress={()=>navigation.navigate("login")}> Login</Text>
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", top: 4}}>
+                        <Text style={{ color: "grey", fontFamily: 'NunitoSans-Regular'  }}>Already have an account?</Text>
+                        <Text style={{ color: "#379AE1", fontFamily: 'NunitoSans-Bold'  }} onPress={()=>navigation.navigate("login")}> Login</Text>
                     </View>
-                    <PrimaryButton width="60%" text="Register" onClick={() => register()} /> 
+                    <View style={{bottom: 9}}>
+                        <PrimaryButton width="60%" text="Register" onClick={() => register()} /> 
+                    </View>
                     </View>
 
                 </ScrollView>

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around"
     },
     button: {
-        padding: 14, marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center"
+        padding: 5, marginTop: "5%", height: "80%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center"
     },
     text: {
         color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold"
