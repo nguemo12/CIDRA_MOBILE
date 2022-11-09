@@ -8,11 +8,11 @@ const RecoveryScreen =({navigation}) => {
         <View style={{ flex: 1, backgroundColor: "white" }}>
            
         <View style={{ width: "100%", height: "50%" }} >
-            <Image source={recovery} style={{ width: "100%", height: "80%" }} />
+            <Image source={recovery} style={{ width: "100%", height: "80%" }} resizeMode='contain' />
         </View>
-        <View style={{ width: "100%", height: "50%" }}>
-            <Text style={{ fontSize: 28, fontWeight: "bold", color: "#379AE1", textAlign: "center", marginTop: "10%" }}>OTP Verification</Text>
-            <Text style={{ textAlign: "center", color: "black" }}> Enter the OTP code sent to  test@gmail.com  </Text>
+        <View style={{ width: "100%", height: "50%", bottom: 30 }}>
+            <Text style={{ fontSize: 28, color: "#379AE1", textAlign: "center", marginTop: "10%", fontFamily: 'NunitoSans-Black' }}>OTP Verification</Text>
+            <Text style={{ textAlign: "center", color: "black", fontFamily: 'NunitoSans-Bold' }}> Enter the OTP code sent to  test@gmail.com  </Text>
          <View style={{ flexDirection:"row", justifyContent:"space-around"}}>
             <TextInput
                 placeholder="8"
@@ -40,13 +40,13 @@ const RecoveryScreen =({navigation}) => {
             />
             </View>
             <View style={{flexDirection:"row", justifyContent:"center", marginTop: "5%"}}>
-                <Text style={{color:"black"}} >Didn't recieve the code?</Text>
-                <Text style={{color:"#379AE1"}} > Resend code</Text>
+                <Text style={{color:"black", fontFamily: 'NunitoSans-Regular'}} >Didn't recieve the code?</Text>
+                <Text style={{color:"#379AE1", fontFamily: 'NunitoSans-Black'}} > Resend code</Text>
 
             </View>
             <View style={{ width: "100%", height: "18%", flexDirection: "row", justifyContent: "space-around" }}>
                 <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "90%", backgroundColor: "#379AE1", borderRadius: 50, alignSelf:"center" }}>
-                    <Text style={{ color: "white", textAlign: "center", fontSize: 20, fontWeight: "bold" }} onPress= {()=>navigation.navigate("login")}>Verify</Text>
+                    <Text style={{ color: "white", textAlign: "center", fontSize: 20, fontFamily: 'NunitoSans-Black' }} onPress= {()=>navigation.navigate(AppRoutes.LoginScreen)}>Verify</Text>
                     </TouchableOpacity>
 
             </View>
