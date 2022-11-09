@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import forgot from '../../../assets/images/forgot.jpeg'
+import forgot from '../../../../assets/images/forgot.jpeg'
 
 const ForgotScreen = ({ navigation }) => {
     const [email, setEmail] = useState('')
