@@ -1,28 +1,28 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable, StyleSheet, TextInput } from "react-native"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import category from "../../assets/images/category.png";
-import profile from "../../assets/images/profile.jpg";
-import arrow from "../../assets/icons/person1.png";
+import category from "../../../assets/images/category.png";
+import profile from "../../../assets/images/profile.jpg";
+import arrow from "../../../assets/icons/person1.png";
 
-import icon from "../../assets/icons/calendar10.png";
-import icon1 from "../../assets/icons/plus.png";
-import search from "../../assets/icons/search.png"
-import user from "../../assets/icons/user.png";
-import users from "../../assets/icons/account.png";
-import textfile from "../../assets/icons/hosticon.jpeg"
-import time from "../../assets/icons/time.png"
-import chart from "../../assets/icons/barc.png"
-import calenda from "../../assets/icons/calenda.png"
-import laughbeam from "../../assets/icons/laughbeam.png";
-import send from "../../assets/icons/send.png";
-import camera from "../../assets/icons/camera4.png";
+import icon from "../../../assets/icons/calendar10.png";
+import icon1 from "../../../assets/icons/plus.png";
+import search from "../../../assets/icons/search.png"
+import user from "../../../assets/icons/user.png";
+import users from "../../../assets/icons/account.png";
+import textfile from "../../../assets/icons/hosticon.jpeg"
+import time from "../../../assets/icons/time.png"
+import chart from "../../../assets/icons/barc.png"
+import calenda from "../../../assets/icons/calenda.png"
+import laughbeam from "../../../assets/icons/laughbeam.png";
+import send from "../../../assets/icons/send.png";
+import camera from "../../../assets/icons/camera4.png";
 import BottomSheet from "react-native-gesture-bottom-sheet";
-import paperclip from "../../assets/icons/paperclip1.png";
-import microphone from "../../assets/icons/microphone8.png";
-import graph from "../../assets/icons/graph.png"
-import comment from "../../assets/icons/chat.png"
-const Dashbaord = ({ navigation }) => {
+import paperclip from "../../../assets/icons/paperclip1.png";
+import microphone from "../../../assets/icons/microphone8.png";
+import graph from "../../../assets/icons/graph.png"
+import comment from "../../../assets/icons/chat.png"
+const DashbaordScreen = ({ navigation }) => {
     const bottomSheet = useRef();
     const [message, setMessage] = useState('');
     return (
@@ -332,4 +332,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Dashbaord;
+export default DashbaordScreen;

@@ -5,6 +5,9 @@ export default AppRoutes = {
 
     //stacks
     AuthenticationStack: "AuthenticationStack",
+    AppointNavigate: "AppointNavigate",
+    ChatNavigate: "ChatNavigate",
+    RootStack: "RootStack",
     
     //authentication Screens
     WelcomeScreen: "WelcomeScreen",
@@ -13,4 +16,14 @@ export default AppRoutes = {
     RecoveryScreen: "RecoveryScreen",
     ForgotScreen: "ForgotScreen",
     FingerPrintScreen: "FingerPrintScreen",
+
+
+    //dashboard Screens
+    DashbaordScreen: "DashbaordScreen",
+    ContactsScreen: "ContactsScreen",
+    ChatScreen: "ChatScreen",
+    AppointmentScreen: "AppointmentScreen",
+    AppointmentListScreen: "AppointmentListScreen",
+    DrugListScreen: "DrugListScreen",
+    VideoConferenceScreen: "VideoConferenceScreen",
 }

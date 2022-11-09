@@ -1,17 +1,17 @@
 import React from 'react';
 import { Text, StyleSheet, View, ScrollView, Pressable, Image, TextInput } from 'react-native'
 
-import search from "../../assets/icons/search24.png"
+import search from "../../../assets/icons/search24.png"
 
-import DR1T from "../../assets/images/dr1.jpg"
-import DR2T from "../../assets/images/dr2.jpg"
-import DR4T from "../../assets/images/dr4.jpg"
-import olivia from "../../assets/images/pro.jpg"
-import profile1 from '../../assets/images/profile1.jpg'
-import profile2 from '../../assets/images/profile2.jpg'
-import profile3 from '../../assets/images/profile3.jpg'
-import profile4 from '../../assets/images/profile4.png'
-const Contacts = ({navigation}) => {
+import DR1T from "../../../assets/images/dr1.jpg"
+import DR2T from "../../../assets/images/dr2.jpg"
+import DR4T from "../../../assets/images/dr4.jpg"
+import olivia from "../../../assets/images/pro.jpg"
+import profile1 from '../../../assets/images/profile1.jpg'
+import profile2 from '../../../assets/images/profile2.jpg'
+import profile3 from '../../../assets/images/profile3.jpg'
+import profile4 from '../../../assets/images/profile4.png'
+const ContactsScreen = ({navigation}) => {
     const contentdoctors = [
         {
             image: DR2T,
@@ -278,4 +278,4 @@ const styles = StyleSheet.create({
     }
 
 });
-export default Contacts;
+export default ContactsScreen;
