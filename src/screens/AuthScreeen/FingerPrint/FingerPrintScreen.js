@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, Pressable, Button } from 'react-native';
-import logo from "../../../assets/images/cidrablue.png"
-import back from "../../../assets/images/back.png"
-import fprint from "../../../assets/images/fingerprint.jpeg"
+import logo from "../../../../assets/images/cidrablue.png"
+import back from "../../../../assets/images/back.png"
+import fprint from "../../../../assets/images/fingerprint.jpeg"
 const FingerPrintScreen = ({navigation}) => {
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>

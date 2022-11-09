@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native"
 import * as React from "react"
 import AppointmentList from "./src/Dashboard/AppointmentList"
 import DrugList from "./src/Dashboard/DrugList"
@@ -8,18 +7,17 @@ import RootStack from "./src/Navigations/RootNavigation"
 
 
 
+import { NavigationContainer } from "@react-navigation/native"
 
+import {AuthStack} from "./src/routes/routes"
+import { Text } from "react-native"
 
 export default function App(){
   return (
     <NavigationContainer>
-      <PaperProvider>
-        <RootStack />
+      <PaperProvider>    
+      <AuthStack />
     </PaperProvider>
   </NavigationContainer>
-   
-   
-    
-   
   )
 }
