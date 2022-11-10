@@ -28,6 +28,7 @@
     "react-native-gesture-handler": "^2.8.0",
     "react-native-loading-spinner-overlay": "^3.0.1",
     "react-native-modal-datetime-picker": "^14.0.0",
+    "react-native-movable-view": "^1.0.3",
     "react-native-pager-view": "^6.0.2",
     "react-native-paper": "^4.12.5",
     "react-native-raw-bottom-sheet": "^2.2.0",
