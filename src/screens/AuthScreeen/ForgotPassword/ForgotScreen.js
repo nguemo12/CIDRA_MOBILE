@@ -12,7 +12,9 @@ const ForgotScreen = ({ navigation }) => {
             setIsEmailEmpty(true)
             return
         } else{
-            navigation.navigate("Recovery");
+            navigation.navigate("Recovery",{
+                paramKey:email,
+            });
         }
     }
 
@@ -37,7 +39,7 @@ const ForgotScreen = ({ navigation }) => {
                         value={email}
                         placeholder="Email"
                         placeholderTextColor={"grey"}
-                        onChange={(text) => setEmail(text)}
+                        onChangeText={(text) => setEmail(text)}
                         
                         style={{ borderBottomWidth: 1, width: "90%", height: "15%", borderRadius: 5, marginTop: "2  %", marginLeft: "5%", padding: 16, color: "black", fontFamily: 'NunitoSans-SemiBold' }}
 

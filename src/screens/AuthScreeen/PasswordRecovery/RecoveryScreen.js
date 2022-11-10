@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import recovery from '../../../../assets/images/recovery.jpeg'
 
-const RecoveryScreen =({navigation}) => {
+const RecoveryScreen =({navigation, route}) => {
     
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -10,9 +10,9 @@ const RecoveryScreen =({navigation}) => {
         <View style={{ width: "100%", height: "50%" }} >
             <Image source={recovery} style={{ width: "100%", height: "80%" }} resizeMode='contain' />
         </View>
-        <View style={{ width: "100%", height: "50%", bottom: 30 }}>
-            <Text style={{ fontSize: 28, color: "#379AE1", textAlign: "center", marginTop: "10%", fontFamily: 'NunitoSans-Black' }}>OTP Verification</Text>
-            <Text style={{ textAlign: "center", color: "black", fontFamily: 'NunitoSans-Bold' }}> Enter the OTP code sent to  test@gmail.com  </Text>
+        <View style={{ width: "100%", height: "50%" }}>
+            <Text style={{ fontSize: 28, fontWeight: "bold", color: "#379AE1", textAlign: "center", marginTop: "10%" }}>OTP Verification</Text>
+            <Text style={{ textAlign: "center", color: "black" }}> Enter the OTP code sent to  {route.params.paramKey}  </Text>
          <View style={{ flexDirection:"row", justifyContent:"space-around"}}>
             <TextInput
                 placeholder="8"
