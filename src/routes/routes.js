@@ -36,12 +36,13 @@ function AuthStack() {
         <Stack.Navigator
             screenOptions={{ headerShown: false, gestureEnabled: true }}
         >
+            <Stack.Screen name={AppRoutes.LoginScreen} component={LoginScreen} options={{ title:''}} />
             <Stack.Screen name={AppRoutes.RegisterScreen} component={RegisterScreen}  options={{ title:''}}/>
             <Stack.Screen name={AppRoutes.WelcomeScreen} component={WelcomeScreen} options={{ title:''}}/>
-            <Stack.Screen name={AppRoutes.LoginScreen} component={LoginScreen} options={{ title:''}} />
             <Stack.Screen name={AppRoutes.RecoveryScreen} component={RecoveryScreen}  options={{ title:''}}/>
             <Stack.Screen name={AppRoutes.ForgotScreen} component={ForgotScreen}  options={{ title:''}}/>
             <Stack.Screen name={AppRoutes.FingerPrintScreen} component={FingerPrintScreen} options={{ title:''}}/>
+            <Stack.Screen name={AppRoutes.RootStack} component={RootStack} options={{ title:''}}/>
         </Stack.Navigator>
     )
 }
@@ -50,7 +51,7 @@ function RootStack() {
     return (
 
             <Tab.Navigator 
-                name={AppRoutes.RootStack}
+                
                 screenOptions={{
                         tabBarStyle: {
                             backgroundColor:"#003D79",
