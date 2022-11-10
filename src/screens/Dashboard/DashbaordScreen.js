@@ -153,6 +153,10 @@ const DashbaordScreen = ({ navigation }) => {
         }
     }
     const [message, setMessage] = useState('');
+    const { authUser } = useContext(AppContext);
+    const [user, setUser] = useState(authUser)
+    console.log("user", user)
+
     return (
 
         <View style={{ flex: 1 }}>

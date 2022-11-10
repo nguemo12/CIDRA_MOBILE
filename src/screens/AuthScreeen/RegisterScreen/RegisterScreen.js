@@ -1,58 +1,48 @@
 
 import React, { useState } from "react";
-import RegisterStyle from "./RegisterStyles";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
-import { HttpStatusCode } from "axios";
 
 import backlog from '../../../../assets/images/regiback.png'
 import logo from "../../../../assets/images/cidrablue.png"
 import Toast from 'react-native-toast-message'
-import { registerAction } from "../../../services/methods/authentication"
+import {
+    registrationAction
+} from "../../../services/methods/authentication"
 import Loader from "../../../Components/Loader"
+import AppRoutes from '../../../routes/routeNames'
 
-import eyeoff from "../../../../assets/images/eyeoff.png"
 import InputField from "../../../Components/InputField";
 import PrimaryButton from "../../../Components/PrimaryButton";
 
 const RegisterScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [errors, setErrors] = useState([])
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [telephone, setTelephone] = useState('')
-    const [isEmailEmpty, setIsEmailEmpty] = useState(false)
-    const [isNameEmpty, setIsNameEmpty] = useState(false)
-    const [isPasswordEmpty, setIsPasswordEmpty] = useState(false)
-    const [isConfirmPasswordEmpty, setIsConfirmPasswordEmpty] = useState(false)
-    const [isTelephoneEmpty, setIsTelephoneEmpty] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const checkEmptyText = () => {
         if (email == "") {
-            setIsEmailEmpty(true)
             return true
         }
         if (name == "") {
-            setIsNameEmpty(true)
             return true
         }
-        if (password == "") {
-            setIsPasswordEmpty(true)
+        if (password == "" && password.length < 8) {
             return true
         }
         if (confirmPassword == "") {
-            setIsConfirmPasswordEmpty(true)
             return true
         }
         if (telephone == "") {
-            setIsTelephoneEmpty(true)
             return true
         }
 
        
     }
     const checkValidEmail = (input) => {
-        console.log(input)
         var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (input.match(validRegex)) {
             return true;
@@ -60,9 +50,17 @@ const RegisterScreen = ({ navigation }) => {
             return false;
         }
     }
+    const showErrorMessages = () => {
+        errors.forEach((error) => {
+            Toast.show({
+                type: 'error',
+                text1: error.msg,
+            });
+        })
+        setErrors([])
+    }
     const register = () => {
         if (!checkEmptyText()) {
-            console.log("email",email)
             if (checkValidEmail(email)) {
                 if (password == confirmPassword) {
                     setLoading(true)
@@ -73,34 +71,48 @@ const RegisterScreen = ({ navigation }) => {
                         'name': name,
                         'confirmPassword': confirmPassword
                     }
-                    console.log(postData)
-                    // registerAction(postData).then((response) => {
-                    //     console.log(response);
-                    // }).catch((error) => {
-                    //     console.log(response);
-                    // }).finally(() => setLoading(false))
-                    setLoading(false)
+                    registrationAction(postData)
+                        .then((response) => {
+                            Toast.show({
+                                type: 'success',
+                                text1: "user created successfully",
+                            });
+                            setTimeout(navigation.push(AppRoutes.LoginScreen), 5000);
+                        }).catch((error) => {
+                            if (error.response.status == 422) {
+                                error.response.data.errors.forEach((error) => {
+                                    Toast.show({
+                                        type: 'error',
+                                        text1: error.msg,
+                                    });
+                                })
+                            }
+                        }).finally(() => {
+                            setLoading(false)
+                        })
                 } else {
-                    Toast.show({
-                        type: 'error',
-                        text1: 'confirmPassword Does Not match',
-                    });
-                    
+                    setErrors([
+                        {
+                            msg: 'confirmPassword Does Not match'
+                        }
+                    ])
+                    showErrorMessages();
                 }
                 
             } else {
-                Toast.show({
-                    type: 'error',
-                    text1: 'Email is not valid',
-                });
+                setErrors([{
+                    msg: 'Email is not valid'
+                }])
+                showErrorMessages();
             }
             
         } else {
-            Toast.show({
-                type: 'error',
-                text1: 'All fields are required',
-            });
+            setErrors([{
+                msg: 'All fields are required'
+            }])
+            showErrorMessages();
         }
+
      
     }
 
@@ -142,12 +154,13 @@ const RegisterScreen = ({ navigation }) => {
 
                     
 
-                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", top: 4}}>
-                        <Text style={{ color: "grey", fontFamily: 'NunitoSans-Regular'  }}>Already have an account?</Text>
-                        <Text style={{ color: "#379AE1", fontFamily: 'NunitoSans-Bold'  }} onPress={()=>navigation.navigate(AppRoutes.LoginScreen)}> Login</Text>
-                    </View>
                     <View style={{bottom: 9}}>
                         <PrimaryButton width="60%" text="Register" onClick={() => register()} /> 
+                    </View>
+                        
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", top: 4, marginVertical: 10}}>
+                        <Text style={{ color: "grey", fontFamily: 'NunitoSans-Regular'  }}>Already have an account?</Text>
+                        <Text style={{ color: "#379AE1", fontFamily: 'NunitoSans-Bold'  }} onPress={()=>navigation.navigate(AppRoutes.LoginScreen)}> Login</Text>
                     </View>
                     </View>
 

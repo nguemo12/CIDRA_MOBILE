@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 60,
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        marginVertical: 10
     },
     button: {
         padding: 5, marginTop: "5%", height: "80%", backgroundColor: "#379AE1", borderRadius: 50, justifyContent: "center"
