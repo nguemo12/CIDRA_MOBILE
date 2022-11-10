@@ -13,7 +13,6 @@ const Main = () => {
             if (userResponse != null) {
                 getAuthToken().then((response) => {
                     if (response != null) {
-                        console.log("userResponse", userResponse);
                         dispatch(
                             login(userResponse)
                         );

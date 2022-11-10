@@ -84,7 +84,6 @@ function AppointNavigate() {
                 }}
                 >
                 
-               {/* <Stack.Screen name="BottomNav" component={BottomNav} options={{ title:''}}/> */}
                <Stack.Screen name={AppRoutes.DashbaordScreen} component={DashbaordScreen} options={{ title:''}}/>
                <Stack.Screen name={AppRoutes.ContactsScreen} component={ContactsScreen} options={{ title:'Chat', headerTitleStyle:{
                 alignSelf: 'center', color:'black', fontSize:18
@@ -156,5 +155,5 @@ function DashboardTopTab(){
 
 export {
     RootStack,
-    AuthStack
+    AuthStack,
 };

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
 import backlog from '../../../../assets/images/loginback.png'
@@ -19,11 +19,8 @@ import AppRoutes from "../../../routes/routeNames"
 import PrimaryButton from "../../../Components/PrimaryButton";
 import Loader from "../../../Components/Loader"
 import { loginAction } from "../../../services/methods/authentication";
-import { AppContext } from "../../../context/AppContext";
 import {
-    login,
-    logout,
-    selectUser
+    login
 } from "../../../stores/reducers/user.reducer";
 import { useDispatch } from "react-redux";
 
