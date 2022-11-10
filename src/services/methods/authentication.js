@@ -29,3 +29,14 @@ export async function registrationAction(postData) {
     }
 }
 
+export async function logoutAction() {
+    try {
+         await setAuthUser(null)
+         await setAuthToken(null)
+        console.log("login out")
+         return true;
+    } catch (error) {
+        throw error
+    }
+}
+
