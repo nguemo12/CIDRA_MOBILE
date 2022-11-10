@@ -22,9 +22,15 @@ import paperclip from "../../../assets/icons/paperclip1.png";
 import microphone from "../../../assets/icons/microphone8.png";
 import graph from "../../../assets/icons/graph.png"
 import comment from "../../../assets/icons/chat.png"
+import { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 const DashbaordScreen = ({ navigation }) => {
     const bottomSheet = useRef();
     const [message, setMessage] = useState('');
+    const { authUser } = useContext(AppContext);
+    const [user, setUser] = useState(authUser)
+    console.log("user", user)
+
     return (
 
         <View style={{ flex: 1 }}>
