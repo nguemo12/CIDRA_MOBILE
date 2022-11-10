@@ -11,6 +11,7 @@ import {
 import AppRoutes from "./routeNames";
 import home from "../../assets/icons/home7.png"
 import video from "../../assets/icons/forum-outline.png"
+import Icon from "../Components/icons";
 
 import ForgotScreen from "../screens/AuthScreeen/ForgotPassword/ForgotScreen";
 import LoginScreen from "../screens/AuthScreeen/LoginScreen/LoginScreen";
@@ -26,6 +27,8 @@ import AppointmentListScreen from '../screens/Dashboard/AppointmentListScreen'
 import DrugListScreen from '../screens/Dashboard/DrugListScreen'
 import { Image } from 'react-native';
 import VideoConferenceScreen from '../screens/Dashboard/VideoConferenceScreen';
+import DashboardTopBar from '../Components/styleBar/DashboardTopBar';
+// import DashboardTopBar from '../Components/styleBar/DashboardTopBar';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,7 +54,6 @@ function RootStack() {
     return (
 
             <Tab.Navigator 
-                
                 screenOptions={{
                         tabBarStyle: {
                             backgroundColor:"#003D79",
@@ -62,7 +64,7 @@ function RootStack() {
                         }, 
                         tabBarShowLabel:false
                     }}>
-                <Tab.Screen name={AppRoutes.AppointNavigate} component={AppointNavigate} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
+                <Tab.Screen name={AppRoutes.DashboardTopTab} component={DashboardTopTab} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
                 <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} options={{headerShown:false, tabBarIcon: () => <Image source={video} style={{width:30, height: 30}}/> }}/>
                 {/* <Tab.Screen name={AppRoutes.ChatNavigate} component={ChatNavigate} options= {{title:'Chats', headerTitleAlign:"center", tabBarIcon: () => <Image source={comment} style={{width:30, height: 30}}/>}}  />          */}
             </Tab.Navigator>
@@ -104,6 +106,27 @@ function AppointNavigate() {
         
     )
 }
+
+
+function DashboardTopTab(){
+  return (
+    <TopTab.Navigator
+        initialRouteName="Conversations"
+        tabBar={(props) => <DashboardTopBar {...props} />}
+        style={{
+        backgroundColor: "#003D79",
+        }}
+        swipeEnabled = {
+            false
+        }
+    >
+      <TopTab.Screen name="Cameras" component={DashbaordScreen} options={{ icon: Icon.searchWhite, name: "Dashboard" }} />
+      <TopTab.Screen name="Stories" component={VideoConferenceScreen}  options={{ icon: Icon.plusWhite , name: "hello 2" }}  />
+      <TopTab.Screen name="Calls" component={VideoConferenceScreen} options={{ icon: Icon.calendarWhite , name: "hello 3" }}  />
+      <TopTab.Screen name="users" component={VideoConferenceScreen} options={{ icon: Icon.userWhite , name: "hello 4" }}  />
+    </TopTab.Navigator>
+  );
+};
 
 
 

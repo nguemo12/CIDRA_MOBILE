@@ -8,6 +8,7 @@ export default AppRoutes = {
     AppointNavigate: "AppointNavigate",
     ChatNavigate: "ChatNavigate",
     RootStack: "RootStack",
+    DashboardTopTab: "DashboardTopTab",
     
     //authentication Screens
     WelcomeScreen: "WelcomeScreen",

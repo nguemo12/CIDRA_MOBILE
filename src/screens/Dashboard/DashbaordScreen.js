@@ -22,35 +22,25 @@ import paperclip from "../../../assets/icons/paperclip1.png";
 import microphone from "../../../assets/icons/microphone8.png";
 import graph from "../../../assets/icons/graph.png"
 import comment from "../../../assets/icons/chat.png"
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import {
+    useDispatch,
+    useSelector
+} from "react-redux";
+import {
+    selectUser
+} from "../../stores/reducers/user.reducer";
+
+
 const DashbaordScreen = ({ navigation }) => {
+    const authUser = useSelector(selectUser);
+    const dispatch = useDispatch();
     const bottomSheet = useRef();
     const [message, setMessage] = useState('');
-    const { authUser } = useContext(AppContext);
-    const [user, setUser] = useState(authUser)
-    console.log("user", user)
+    console.log("authUser", authUser)
 
     return (
 
         <View style={{ flex: 1 }}>
-            <View style={{ width: "100%", height: "25%", backgroundColor: "#003D79" }}>
-                <Text style={{ color: "#379AE1", fontSize: 18, textAlign: "center" }}>Hello, Mr Agbor A.</Text>
-                <View style={{ width: "95%", height: "40%", flexDirection: "row", justifyContent: "space-around" }}>
-                    <Image source={category} style={{ width: "10%", height: "50%" }} />
-                    <Text style={{ fontSize: 22, color: "white", fontWeight: "bold" }}>Dashbaord</Text>
-                    <Image source={profile} style={{ width: "15%", height: "70%", borderRadius: 50, resizeMode: "cover" }} />
-                    <View style={{ width: "5%", height: "25%", borderRadius: 50, backgroundColor: "red", marginLeft: -130 }}><Text style={{ textAlign: "center", color: "white" }}>5</Text></View>
-                </View>
-                <View style={{ width: "95%", height: "50%", flexDirection: "row", justifyContent: "space-around", marginTop: "2%" }}>
-                    <Image source={search} style={{ width: "7%", height: "30%" }} />
-                    <Text style={{ color: "white", fontSize: 28, fontWeight: "bold", textAlign: "center" }}>...</Text>
-                    <Image source={icon} style={{ width: "7%", height: "30%" }} />
-                    <Image source={user} style={{ width: "7%", height: "30%" }} />
-                    <Image source={users} style={{ width: "7%", height: "30%" }} />
-                    <Image source={icon1} style={{ width: "7%", height: "30%" }} />
-                </View>
-            </View>
 
             <ScrollView style={{ height: "100%", width: "100%", marginTop: "5%" }}>
 

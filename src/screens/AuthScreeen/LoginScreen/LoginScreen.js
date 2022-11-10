@@ -21,12 +21,16 @@ import Loader from "../../../Components/Loader"
 import { loginAction } from "../../../services/methods/authentication";
 import { AppContext } from "../../../context/AppContext";
 import {
-    NativeModules
-} from "react-native";
+    login,
+    logout,
+    selectUser
+} from "../../../stores/reducers/user.reducer";
+import { useDispatch } from "react-redux";
+
 
 const LoginScreen = ({ navigation }) => {
 
-    const { setStoredToken, setAuthUser } = useContext(AppContext);
+  const dispatch = useDispatch();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -59,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
         })
     }
     
-    const login = () => {
+    const onLogin = () => {
         if (!checkEmptyText()) {
             if (checkValidEmail(email)) {
                 setLoading(true)
@@ -70,14 +74,12 @@ const LoginScreen = ({ navigation }) => {
                 loginAction(postData)
                     .then((response) => {
                         if (response) {
-                            setAuthUser({
-                                name: "Patien",
-                                email: "patien@gmail.com",
+                            dispatch(login({
+                                name: "Patient one",
+                                email: "patient@gmail.com",
                                 id: "fkasjdflkajsdlfkjalksdfj"
-                            })
-                            setStoredToken("fasdklfjaklsfdjklajsdfkljasklfdjklasdjflk")
+                            }))
                             navigation.push(AppRoutes.RootStack)
-                            // NativeModules.DevSettings.reload();
                         } else {
                             setErrors([{
                                 msg: 'Server error'
@@ -134,7 +136,7 @@ const LoginScreen = ({ navigation }) => {
 
                     
                     <View style={{bottom: 9}}>
-                        <PrimaryButton width="60%" text="Login" onClick={() => login()} /> 
+                        <PrimaryButton width="60%" text="Login" onClick={() => onLogin()} /> 
                     </View>
                     <View style={{ width: "50%", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "10%", alignSelf: 'center' }}>
                         <Text style={{ color: "grey", fontFamily: 'NunitoSans-Black' }} >Not having an account?</Text>
