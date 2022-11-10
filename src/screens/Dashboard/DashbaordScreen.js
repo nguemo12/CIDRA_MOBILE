@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable, StyleSheet, TextInput } from "react-native"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import category from "../../../assets/images/category.png";
 import profile from "../../../assets/images/profile.jpg";
 import arrow from "../../../assets/icons/person1.png";
+import  MessageGroupComponent  from "../../Components/MessageGroupComponent"
 
+import { NlpManager } from 'node-nlp-rn';
 import icon from "../../../assets/icons/calendar10.png";
 import icon1 from "../../../assets/icons/plus.png";
 import search from "../../../assets/icons/search.png"
@@ -22,10 +24,134 @@ import paperclip from "../../../assets/icons/paperclip1.png";
 import microphone from "../../../assets/icons/microphone8.png";
 import graph from "../../../assets/icons/graph.png"
 import comment from "../../../assets/icons/chat.png"
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+} from "react-native-chart-kit";
 const DashbaordScreen = ({ navigation }) => {
     const bottomSheet = useRef();
+    const manager = new NlpManager({ languages: ['en'], forceNER: true });
+
+    const [managerIsTrained, setManagerIsTrained] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [inputText, setInputText] = useState("");
+
+    // Adds the utterances and intents for the NLP
+    manager.addDocument('en', 'goodbye for now', 'greetings.bye');
+    manager.addDocument('en', 'bye bye take care', 'greetings.bye');
+    manager.addDocument('en', 'bye', 'greetings.bye');
+    manager.addDocument('en', 'goodbye', 'greetings.bye');
+    manager.addDocument('en', 'okay see you later', 'greetings.bye');
+    manager.addDocument('en', 'bye for now', 'greetings.bye');
+    manager.addDocument('en', 'i must go', 'greetings.bye');
+    manager.addDocument('en', 'hello', 'greetings.hello');
+    manager.addDocument('en', 'hi', 'greetings.hello');
+    manager.addDocument('en', 'howdy', 'greetings.hello');
+    manager.addDocument('en', "i am not in the best of health.", "health.bad")
+    manager.addDocument('en', "i am not in the best of health", "health.bad")
+    manager.addDocument('en', "i am not feeling fine.", "health.bad")
+    manager.addDocument('en', "i am not feeling fine", "health.bad")
+    manager.addDocument('en', "i am not fine", "health.bad")
+    manager.addDocument('en', "i am fine, thank you. how about you?", "greetings_response.good_andyou")
+    manager.addDocument('en', "i am fine, and you?", "greetings_response.good_andyou")
+    manager.addDocument('en', "hi i am not feeling fine.", "greetings.hello.bad")
+    manager.addDocument('en', "i have a mild headache", "health.headache")
+
+
+
+    // Train also the NLG
+    manager.addAnswer('en', 'greetings.bye', 'Till next time');
+    manager.addAnswer('en', 'greetings.bye', 'see you soon!');
+    manager.addAnswer('en', 'greetings.hello', 'Hey there. How are you doing?');
+    manager.addAnswer('en', 'greetings.hello', 'Greetings. How are you feeling today?');
+    manager.addAnswer('en', 'health.bad', "I'm sorry to hear that, what are your symptoms? (Please input symptoms in the following format: (adjective) (symptom) e.g. mild headache, sweating")
+    manager.addAnswer('en', 'health.bad', "I'm sorry to hear that, what's wrong?")
+    manager.addAnswer('en', 'heatlh.headache', "If it's just a headache try taking some paracetamol or ibuprofen")
+
+
+    useEffect(() => {
+        const train = async () => {
+            console.log("Training the model")
+            await manager.train();
+            // manager.save()
+            setManagerIsTrained(true);
+            console.log("Done training the model")
+        }
+
+        train()
+            .catch((reason) => {
+                console.log("Error training the model. Error")
+                console.log(reason)
+            })
+    }, [])
+
+    useEffect(() => {
+        console.log("The messages state variable has changed. It's value is")
+        console.log(messages)
+    }, [messages])
+
+    var messageGroupComponents = [];
+
+    const _textInput = useRef(1);
+
+    const sendMessage = (message) => {
+        const dummy = messages
+
+        dummy.push({
+            isSent: true,
+            lastInGroup: true,
+            messageContent: message,
+            timeSent: new Date(),
+            key: dummy.length
+        })
+
+        setMessages(dummy)
+
+        setInputText("")
+
+        replyMessage(message)
+    }
+
+    const replyMessage = async (message) => {
+        if (managerIsTrained) {
+            const response = await manager.process('en', message.toLowerCase())
+
+            const dummy = messages
+
+            const messageContent = response.answer ? response.answer : "The model couldn't compute a response"
+
+            if (!response.answer) {
+                console.log(`The model couldn't compute an answer. The message is: ${message}. The response gotten`)
+                console.log(response)
+            }
+
+            dummy.push({
+                isSent: false,
+                lastInGroup: true,
+                messageContent: messageContent,
+                timeSent: new Date(),
+                key: dummy.length
+            })
+
+            setMessages(dummy)
+        } else {
+            const dummy = messages
+
+            dummy.push({
+                isSent: false,
+                lastInGroup: true,
+                messageContent: "The model has not yet been trained",
+                timeSent: new Date(),
+                key: dummy.length
+            })
+
+            setMessages(dummy)
+        }
+    }
     const [message, setMessage] = useState('');
     const { authUser } = useContext(AppContext);
     const [user, setUser] = useState(authUser)
@@ -55,17 +181,19 @@ const DashbaordScreen = ({ navigation }) => {
             <ScrollView style={{ height: "100%", width: "100%", marginTop: "5%" }}>
 
                 <ScrollView horizontal scrollEnabled style={{ height: 290, width: "100%" }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: 1000,  }}>
-                        <View style={{ height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397",
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 8,
-                        height: 16,
-                    },
-                    shadowOpacity: 0.58,
-                    shadowRadius: 16.00,
-                    
-                    elevation: 24, }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: 1000, }}>
+                        <View style={{
+                            height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397",
+                            shadowColor: "#000",
+                            shadowOffset: {
+                                width: 8,
+                                height: 16,
+                            },
+                            shadowOpacity: 0.58,
+                            shadowRadius: 16.00,
+
+                            elevation: 24,
+                        }}>
                             <View style={{ height: "30%", width: "95%", flexDirection: "row", justifyContent: "space-around", marginTop: "2%", }} >
                                 <View style={{ height: "50%", width: "70%", borderRadius: 10, backgroundColor: "#005A9C" }}>
                                     <Text style={{ color: "white", padding: 4, fontSize: 18, fontWeight: "bold", textAlign: "center" }}>Appointments</Text>
@@ -109,16 +237,18 @@ const DashbaordScreen = ({ navigation }) => {
                             </View>
 
                         </View>
-                        <View style={{ height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397",
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 8,
-                        height: 16,
-                    },
-                    shadowOpacity: 0.58,
-                    shadowRadius: 16.00,
-                    
-                    elevation: 24, }}>
+                        <View style={{
+                            height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397",
+                            shadowColor: "#000",
+                            shadowOffset: {
+                                width: 8,
+                                height: 16,
+                            },
+                            shadowOpacity: 0.58,
+                            shadowRadius: 16.00,
+
+                            elevation: 24,
+                        }}>
                             <View style={{ height: "30%", width: "95%", flexDirection: "row", justifyContent: "space-around", marginTop: "2%", }} >
                                 <View style={{ height: "50%", width: "70%", borderRadius: 10, backgroundColor: "#005A9C" }}>
                                     <Text style={{ color: "white", padding: 4, fontSize: 18, fontWeight: "bold", textAlign: "center" }}>Hospitals Visited</Text>
@@ -162,21 +292,23 @@ const DashbaordScreen = ({ navigation }) => {
                             </View>
 
                         </View>
-                        <View style={{ height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397", 
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 8,
-                        height: 16,
-                    },
-                    shadowOpacity: 0.58,
-                    shadowRadius: 16.00,
-                    
-                    elevation: 24, }}>
+                        <View style={{
+                            height: "85%", width: 300, borderRadius: 25, backgroundColor: "#1F2397",
+                            shadowColor: "#000",
+                            shadowOffset: {
+                                width: 8,
+                                height: 16,
+                            },
+                            shadowOpacity: 0.58,
+                            shadowRadius: 16.00,
+
+                            elevation: 24,
+                        }}>
                             <View style={{ height: "30%", width: "95%", flexDirection: "row", justifyContent: "space-around", marginTop: "2%", }} >
                                 <View style={{ height: "50%", width: "70%", borderRadius: 10, backgroundColor: "#005A9C" }}>
                                     <Text style={{ color: "white", padding: 4, fontSize: 18, fontWeight: "bold", textAlign: "center" }}>Drugs Prescribed</Text>
                                 </View>
-                                <TouchableOpacity><Text style={{ color: "white", justifyContent: "center" }} onPress={()=>navigation.navigate("DrugList")}>See All</Text></TouchableOpacity>
+                                <TouchableOpacity><Text style={{ color: "white", justifyContent: "center" }} onPress={() => navigation.navigate("DrugList")}>See All</Text></TouchableOpacity>
 
                             </View>
                             <View style={{ height: "60%", width: "95%", flexDirection: "row", justifyContent: "space-around", marginTop: -20, }} >
@@ -220,7 +352,52 @@ const DashbaordScreen = ({ navigation }) => {
 
                 </ScrollView>
                 <View style={{ height: 190, width: "100%" }}>
-                    <Image source={graph} style={{ width: 300, height: "100%", alignSelf: "center" }} />
+                    <View>
+                        <Text>Health status line Chart</Text>
+                        <LineChart
+                            data={{
+                                labels: ["January", "February", "March", "April", "May", "June"],
+                                datasets: [
+                                    {
+                                        data: [
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100
+                                        ]
+                                    }
+                                ]
+                            }}
+                            width={300} // from react-native
+                            height={220}
+                            yAxisLabel="$"
+                            yAxisSuffix="k"
+                            yAxisInterval={1} // optional, defaults to 1
+                            chartConfig={{
+                                backgroundColor: "#09b2c3",
+                                backgroundGradientFrom: "#09b2c3",
+                                backgroundGradientTo: "#1F2397",
+                                decimalPlaces: 2, // optional, defaults to 2dp
+                                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                style: {
+                                    borderRadius: 16
+                                },
+                                propsForDots: {
+                                    r: "6",
+                                    strokeWidth: "2",
+                                    stroke: "#ffa726"
+                                }
+                            }}
+                            bezier
+                            style={{
+                                marginVertical: 8,
+                                borderRadius: 16
+                            }}
+                        />
+                    </View>
                 </View>
 
 
@@ -229,13 +406,19 @@ const DashbaordScreen = ({ navigation }) => {
                 <BottomSheet hasDraggableIcon ref={bottomSheet} height={400} width={360} sheetBackgroundColor={"#09b2c3"} >
                     <View style={{ width: "100%", height: "100%" }}>
                         <ScrollView style={{ height: "100%" }}>
+
+
+
                             <View style={{ width: "100%", height: 800 }}>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightblue", marginRight: "50%" }} ><Text>Welcome to the chatbot consultation enter your symptoms</Text></View>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightgrey", marginLeft: "50%" }} ><Text>Fine and you ?</Text></View>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightblue", marginRight: "50%" }} ><Text>Come to the meeting</Text></View>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightgrey", marginLeft: "50%" }} ><Text>Sure i will</Text></View>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightblue", marginRight: "50%" }} ><Text>Welcome to chatPay</Text></View>
-                                <View style={{ width: "50%", height: "10%", padding: 8, margin: 10, borderRadius: 25, backgroundColor: "lightgrey", marginLeft: "50%" }} ><Text>Weshare is good.</Text></View>
+                                {
+                                    messages.map((message, index) => {
+                                        return <MessageGroupComponent
+                                            isSent={message.isSent}
+                                            messages={[message]}
+                                            key={message.key}
+                                        />
+                                    })
+                                }
 
 
                             </View>
@@ -248,8 +431,17 @@ const DashbaordScreen = ({ navigation }) => {
                                     placeholder={"Type a Message..."}
                                     style={styles.textInput}
                                     multiline
-                                    value={message}
-                                    onChangeText={setMessage}
+                                    // value={message}
+                                    value={inputText}
+                                    onChangeText={
+                                        (text) => {
+                                            setInputText(text)
+                                        }
+                                    }
+                                    autoFocus={true}
+                                    autoCorrect={false}
+                                    
+                                    ref={_textInput}
 
                                 />
 
@@ -259,18 +451,17 @@ const DashbaordScreen = ({ navigation }) => {
 
                             </View>
 
-
+                      <Pressable   onPress={
+                        () => {
+                            sendMessage(inputText)
+                        }
+                    }>
                             <View style={styles.buttonContainer}>
-
-                                {!message
-                                    ? <Image source={microphone} style={{ width: 30, height: 30, marginHorizontal: 10, }} />
-                                    : <Image source={send} style={{ width: 30, height: 30, marginHorizontal: 10, }} />
-                                }
-
+                                    <Image source={send} style={{ width: 30, height: 30, marginHorizontal: 10, }} />
                             </View>
+                            </Pressable>
                         </View>
                     </View>
-
                 </BottomSheet>
 
                 <Pressable
@@ -322,7 +513,7 @@ const styles = StyleSheet.create({
 
         marginHorizontal: 10,
         tintColor: "black",
-        height:"10%"
+        height: "10%"
     },
     icons: {
         marginHorizontal: 10,
