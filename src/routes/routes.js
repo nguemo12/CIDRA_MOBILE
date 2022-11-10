@@ -61,7 +61,9 @@ function RootStack() {
                         }, 
                         tabBarShowLabel:false
                     }}>
-                <Tab.Screen name={AppRoutes.AppointNavigate} component={AppointNavigate} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
+                <Tab.Screen name={AppRoutes.AppointNavigate} component={AppointNavigate} 
+                options={{headerShown:false, 
+                tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
                 <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
                 {/* <Tab.Screen name={AppRoutes.ChatNavigate} component={ChatNavigate} options= {{title:'Chats', headerTitleAlign:"center", tabBarIcon: () => <Image source={comment} style={{width:30, height: 30}}/>}}  />          */}
             </Tab.Navigator>
