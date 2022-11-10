@@ -10,7 +10,7 @@ import {
 } from "@react-navigation/material-top-tabs";
 import AppRoutes from "./routeNames";
 import home from "../../assets/icons/home7.png"
-import comment from "../../assets/icons/comments.png"
+import video from "../../assets/icons/forum-outline.png"
 
 import ForgotScreen from "../screens/AuthScreeen/ForgotPassword/ForgotScreen";
 import LoginScreen from "../screens/AuthScreeen/LoginScreen/LoginScreen";
@@ -62,7 +62,7 @@ function RootStack() {
                         tabBarShowLabel:false
                     }}>
                 <Tab.Screen name={AppRoutes.AppointNavigate} component={AppointNavigate} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
-                <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
+                <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} options={{headerShown:false, tabBarIcon: () => <Image source={video} style={{width:30, height: 30}}/> }}/>
                 {/* <Tab.Screen name={AppRoutes.ChatNavigate} component={ChatNavigate} options= {{title:'Chats', headerTitleAlign:"center", tabBarIcon: () => <Image source={comment} style={{width:30, height: 30}}/>}}  />          */}
             </Tab.Navigator>
     )
