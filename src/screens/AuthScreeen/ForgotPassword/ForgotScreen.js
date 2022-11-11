@@ -1,67 +1,73 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+    View,
+    Text,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+    StyleSheet
+} from 'react-native';
 import forgot from '../../../../assets/images/forgot.jpeg'
-
-const ForgotScreen = ({ navigation }) => {
-    const [email, setEmail] = useState('')
-
-    const [isEmailEmpty, setIsEmailEmpty] = useState(false)
-
-    const checkEmailText = () => {
-        if (email == "") {
-            setIsEmailEmpty(true)
-            return
-        } else{
-            navigation.navigate("Recovery",{
-                paramKey:email,
-            });
+import PrimaryButton from "../../../Components/PrimaryButton";
+import {
+    getAuthUser, setAuthToken, setAuthUser
+} from '../../../services/AsyncStorageMethods.js'
+import Toast from 'react-native-toast-message'
+import {
+    sendOTPAction
+} from '../../../services/methods/authentication.js'
+import Loader from "../../../Components/Loader"
+import SendOtp from '../../../Components/SendOtp';
+const ForgotScreen = ({
+        navigation
+    }) => {
+        const [email, setEmail] = useState('')
+        const [medium, setMedium] = useState('email')
+        const [contact, setContact] = useState('')
+        const [errors, setErrors] = useState([])
+        const [loading, setLoading] = useState(false)
+        useEffect(() => {
+            async function fetchData() {
+                let response = await getAuthUser()
+                setEmail(response.email)
+                setContact(response.tel)
+            }
+            fetchData()
+        }, [])
+        const showErrorMessages = () => {
+            errors.forEach((error) => {
+                Toast.show({
+                    type: 'error',
+                    text1: error.msg,
+                });
+            })
         }
-    }
-
-        return (
-            <View style={{ flex: 1, backgroundColor: "white" }}>
-                <View style={{ width: "100%", height: "50%" }} >
-
-                    <Image source={forgot} style={{ width: "80%", height: "100%", alignSelf: 'center' }} resizeMode='center' />
-                </View>
-                <ScrollView style={{height:"50%"}}>
-                <View style={{ width: "100%", height: "120%" }}>
-                    <Text style={{ fontSize: 28, color: "#379AE1", textAlign: "center", marginTop: "10%", fontFamily: 'NunitoSans-Black' }}>OTP Verification</Text>
-                    <Text style={{ textAlign: "center", color: "black", fontFamily: 'NunitoSans-Bold'}}>We will send a one Time Password {"\n"} to the following email </Text>
-                    <Text style={{ marginLeft: "5%", marginTop: "8%", color: "grey", fontFamily: 'NunitoSans-Regular' }}>Enter Email :</Text>
-                    
-                    {/* {
-                        isEmailEmpty ?
-                            <Text style={{ display: "flex", color: '#F8AE1E', marginLeft: 270, marginTop: 20 }}>*required</Text>
-                            : null
-                    } */}
-                    <TextInput
-                        value={email}
-                        placeholder="Email"
-                        placeholderTextColor={"grey"}
-                        onChangeText={(text) => setEmail(text)}
-                        
-                        style={{ borderBottomWidth: 1, width: "90%", height: "15%", borderRadius: 5, marginTop: "2  %", marginLeft: "5%", padding: 16, color: "black", fontFamily: 'NunitoSans-SemiBold' }}
-
-                    />
-                    <View style={{ width: "100%", height: "15%", flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
-                        <TouchableOpacity style={{ padding: 16, width: "60%", marginTop: "5%", height: "100%", backgroundColor: "#379AE1", borderRadius: 50, alignSelf: "center" }}>
-                            <Text 
-                            style={{ 
-                                color: "white", 
-                                textAlign: "center", 
-                                fontSize: 20, 
-                                fontFamily: 'NunitoSans-Black'
-                            }} 
-                            onPress={()=> checkEmailText()}>Send OTP</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                    
-                </View>
-                </ScrollView>
+        const onSuccess = () => {
+            navigation.push(AppRoutes.RecoveryScreen)
+        }
+    return(
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+            <Loader loading={loading} />
+            
+            <View  style={{ zIndex: 1000 }}>
+                <Toast />
             </View>
-        );
-    };
+            <View style={{ width: "100%", height: "50%" }} >
+                <Image source={forgot} style={{ width: "80%", height: "100%", alignSelf: 'center' }} resizeMode='center' />
+            </View>
+            <SendOtp
+                email={email}
+                medium={medium}
+                contact={contact}
+                showErrorMessages={showErrorMessages}
+                setErrors={setErrors}
+                setLoading={setLoading}
+                setMedium={setMedium}
+                navigation={navigation}
+                onSuccess={onSuccess} />
+        </View>
+    )
+};
 
-    export default ForgotScreen;
+export default ForgotScreen;
