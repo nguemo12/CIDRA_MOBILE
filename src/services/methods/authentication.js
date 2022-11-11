@@ -3,19 +3,14 @@ import axiosInstance from "../axios/axiosInstance"
 
 export async function loginAction(postData) {
     try {
-        // let response = await axiosInstance.post('user/create', postData)
-        if (postData.email == "patient@gmail.com" && postData.password == "00000000") {
-            await setAuthUser({
-                name: "Patient One",
-                email: "patient@gmail.com",
-                id: "fkasjdflkajsdlfkjalksdfj"
-            })
-            await setAuthToken("fasdklfjaklsfdjklajsdfkljasklfdjklasdjflk")
-            return true;
-        } else {
-            return false;
-        }
+        let response = await axiosInstance.post('login', postData)
+        await setAuthUser(response.data.data.user)
+        await setAuthToken(response.data.data.apiToken.accessToken)
+        return response
     } catch (error) {
+        if (error.response.status == 403) {
+            await setAuthUser(error.response.data.data)
+        }
         throw error
     }
 }
@@ -39,4 +34,23 @@ export async function logoutAction() {
         throw error
     }
 }
+export async function sendOTPAction(postData) {
+    try {
+        let response = await axiosInstance.post('user/send-otpcode', postData)
+        return response
+    } catch (error) {
+        throw error
+    }
+}
+export async function verifyOTPAction(postData) {
+        console.log("postData", postData)
 
+    try {
+        let response = await axiosInstance.post('user/verify-code', postData)
+        await setAuthUser(response.data.data.user)
+        await setAuthToken(response.data.data.apiToken.accessToken)
+        return response
+    } catch (error) {
+        throw error
+    }
+}
