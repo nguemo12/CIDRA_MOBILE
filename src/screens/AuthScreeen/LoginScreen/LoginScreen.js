@@ -10,11 +10,6 @@ import CustomPasswordInput from "../../../Components/passwordinput";
 import InputField from "../../../Components/InputField";
 import CustomTextInput from "../../../Components/textinput";
 import Toast from 'react-native-toast-message'
-import {
-    ToastAndroid,
-    Platform,
-    AlertIOS,
-  } from 'react-native';
 import AppRoutes from "../../../routes/routeNames"
 import PrimaryButton from "../../../Components/PrimaryButton";
 import Loader from "../../../Components/Loader"
@@ -70,21 +65,14 @@ const LoginScreen = ({ navigation }) => {
                 }
                 loginAction(postData)
                     .then((response) => {
-                        if (response) {
-                            dispatch(login({
-                                name: "Patient one",
-                                email: "patient@gmail.com",
-                                id: "fkasjdflkajsdlfkjalksdfj"
-                            }))
-                            navigation.push(AppRoutes.RootStack)
+                        dispatch(login(response.data.data.user))
+                    }).catch((error) => {
+                        if (error.response.status == 403) {
+                            navigation.navigate(AppRoutes.ForgotScreen)
                         } else {
-                            setErrors([{
-                                msg: 'Server error'
-                            }])
+                            setErrors(error.response.data.errors)
                             showErrorMessages();
                         }
-                    }).catch((error) => {
-                        console.log("error", error)
                     }).finally(() => {
                         setLoading(false)
                     })
