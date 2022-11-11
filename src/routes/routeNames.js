@@ -9,6 +9,8 @@ export default AppRoutes = {
     ChatNavigate: "ChatNavigate",
     RootStack: "RootStack",
     DashboardTopTab: "DashboardTopTab",
+    SettingStack: "SettingStack",
+    AppointmentStack: "AppointmentStack",
     
     //authentication Screens
     WelcomeScreen: "WelcomeScreen",
@@ -27,4 +29,10 @@ export default AppRoutes = {
     AppointmentListScreen: "AppointmentListScreen",
     DrugListScreen: "DrugListScreen",
     VideoConferenceScreen: "VideoConferenceScreen",
+
+    //setting screens
+    SettingScreen: "SettingScreen",
+
+    //appointment screens
+    AppointmentScreen: "AppointmentScreen",
 }

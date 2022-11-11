@@ -22,22 +22,26 @@ import FingerPrintScreen from "../screens/AuthScreeen/FingerPrint/FingerPrintScr
 import DashbaordScreen from '../screens/Dashboard/DashbaordScreen'
 import ContactsScreen from '../screens/Dashboard/ContactsScreen'
 import ChatScreen from '../screens/Dashboard/ChatScreen'
-import AppointmentScreen from '../screens/Dashboard/AppointmentScreen'
+// import AppointmentScreen from '../screens/Dashboard/AppointmentScreen'
 import AppointmentListScreen from '../screens/Dashboard/AppointmentListScreen'
 import DrugListScreen from '../screens/Dashboard/DrugListScreen'
-import { Image } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import VideoConferenceScreen from '../screens/Dashboard/VideoConferenceScreen';
 import DashboardTopBar from '../Components/styleBar/DashboardTopBar';
+import SettingScreen from '../screens/SettingScreen/SettingScreen'
+import AppointmentScreen from '../screens/AppointmentScreens/AppointmentScreen'
+import HomeTabNavigation from '../Components/styleBar/HomeTabNavigation';
 // import DashboardTopBar from '../Components/styleBar/DashboardTopBar';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-function AuthStack() {
+function AuthStack(userVerified) {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false, gestureEnabled: true }}
+            initialRouteName={userVerified.userVerified ? AppRoutes.ForgotScreen : AppRoutes.LoginScreen}
         >
             <Stack.Screen name={AppRoutes.LoginScreen} component={LoginScreen} options={{ title:''}} />
             <Stack.Screen name={AppRoutes.RegisterScreen} component={RegisterScreen}  options={{ title:''}}/>
@@ -45,66 +49,83 @@ function AuthStack() {
             <Stack.Screen name={AppRoutes.RecoveryScreen} component={RecoveryScreen}  options={{ title:''}}/>
             <Stack.Screen name={AppRoutes.ForgotScreen} component={ForgotScreen}  options={{ title:''}}/>
             <Stack.Screen name={AppRoutes.FingerPrintScreen} component={FingerPrintScreen} options={{ title:''}}/>
-            <Stack.Screen name={AppRoutes.RootStack} component={RootStack} options={{ title:''}}/>
+        </Stack.Navigator>
+    )
+}
+
+
+function SettingStack() {
+    return (
+        <Stack.Navigator
+            screenOptions={{ headerShown: false, gestureEnabled: true }}
+        >
+            <Stack.Screen name={AppRoutes.SettingScreen} component={SettingScreen} options={{ title:''}} />
         </Stack.Navigator>
     )
 }
 
 function RootStack() {
     return (
-
-            <Tab.Navigator 
-                screenOptions={{
-                        tabBarStyle: {
-                            backgroundColor:"#003D79",
-                        },
-                        tabBarLabelStyle:{
-                            fontSize:15,
-                            color:"white"
-                        }, 
-                        tabBarShowLabel:false
-                    }}>
-                <Tab.Screen name={AppRoutes.DashboardTopTab} component={DashboardTopTab} options={{headerShown:false, tabBarIcon: () => <Image source={home} style={{width:30, height: 30}}/> }}/>
-                <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} options={{headerShown:false, tabBarIcon: () => <Image source={video} style={{width:30, height: 30}}/> }}/>
-                {/* <Tab.Screen name={AppRoutes.ChatNavigate} component={ChatNavigate} options= {{title:'Chats', headerTitleAlign:"center", tabBarIcon: () => <Image source={comment} style={{width:30, height: 30}}/>}}  />          */}
+            <Tab.Navigator
+                screenOptions = {
+                    {
+                        headerShown: false,
+                        gestureEnabled: false
+                    }
+                }
+                tabBar={(props) => <HomeTabNavigation {...props} />}>
+                <Tab.Screen name={AppRoutes.DashboardTopTab} component={DashboardTopTab} />
+                <Tab.Screen name={AppRoutes.AppointmentStack} component={AppointmentStack} />
+                <Tab.Screen name={AppRoutes.VideoConferenceScreen} component={VideoConferenceScreen} />
+                <Tab.Screen name={AppRoutes.SettingStack} component={SettingStack} />         
             </Tab.Navigator>
     )
 }
 
-function AppointNavigate() {
-    return(
-      
-            <Stack.Navigator 
-                screenOptions={{
-                    headerStyle:{
-                        backgroundColor:'transparent'
-                    },
-                    headerTintColor: '#1F29397',
-                    headerTransparent:true,
-                }}
-                >
-                
-               <Stack.Screen name={AppRoutes.DashbaordScreen} component={DashbaordScreen} options={{ title:''}}/>
-               <Stack.Screen name={AppRoutes.ContactsScreen} component={ContactsScreen} options={{ title:'Chat', headerTitleStyle:{
-                alignSelf: 'center', color:'black', fontSize:18
-               }}}/>
-               <Stack.Screen name={AppRoutes.ChatScreen} component={ChatScreen} options={{ title:''}}/>
+function AppointmentStack() {
+    return (
+        <Stack.Navigator
+            screenOptions={{ headerShown: false, gestureEnabled: true }}
+        >
+            <Stack.Screen name={AppRoutes.AppointmentScreen} component={AppointmentScreen} options={{ title:''}} />
+        </Stack.Navigator>
+    )
+}
 
-               <Stack.Screen name={AppRoutes.AppointmentScreen} component={AppointmentScreen} options={{ title:'Book Appointment', headerTitleStyle:{
-                alignSelf: 'center', color:'black', fontSize:18
-               }}}/>
-                <Stack.Screen name={AppRoutes.AppointmentListScreen} component={AppointmentListScreen} options={{ title:'List of Appointment', headerTitleStyle:{
-                alignSelf: 'center', color:'black', fontSize:18
-               }}}/>
-               <Stack.Screen name={AppRoutes.DrugListScreen} component={DrugListScreen} options={{ title:'List of Drugs', headerTitleStyle:{
-                alignSelf: 'center', color:'black', fontSize:18
-               }}}/>
-            </Stack.Navigator>
+// function AppointNavigate() {
+//     return(
+      
+//             <Stack.Navigator 
+//                 screenOptions={{
+//                     headerStyle:{
+//                         backgroundColor:'transparent'
+//                     },
+//                     headerTintColor: '#1F29397',
+//                     headerTransparent:true,
+//                 }}
+//                 >
+                
+//                <Stack.Screen name={AppRoutes.DashbaordScreen} component={DashbaordScreen} options={{ title:''}}/>
+//                <Stack.Screen name={AppRoutes.ContactsScreen} component={ContactsScreen} options={{ title:'Chat', headerTitleStyle:{
+//                 alignSelf: 'center', color:'black', fontSize:18
+//                }}}/>
+//                <Stack.Screen name={AppRoutes.ChatScreen} component={ChatScreen} options={{ title:''}}/>
+
+//                <Stack.Screen name={AppRoutes.AppointmentScreen} component={AppointmentScreen} options={{ title:'Book Appointment', headerTitleStyle:{
+//                 alignSelf: 'center', color:'black', fontSize:18
+//                }}}/>
+//                 <Stack.Screen name={AppRoutes.AppointmentListScreen} component={AppointmentListScreen} options={{ title:'List of Appointment', headerTitleStyle:{
+//                 alignSelf: 'center', color:'black', fontSize:18
+//                }}}/>
+//                <Stack.Screen name={AppRoutes.DrugListScreen} component={DrugListScreen} options={{ title:'List of Drugs', headerTitleStyle:{
+//                 alignSelf: 'center', color:'black', fontSize:18
+//                }}}/>
+//             </Stack.Navigator>
         
            
         
-    )
-}
+//     )
+// }
 
 
 function DashboardTopTab(){
@@ -132,13 +153,14 @@ function DashboardTopTab(){
 // function ChatNavigate(){
 //     return(
       
-//             <Stack.Navigator 
+//             <Stack.Navigator
 //             screenOptions={{
 //                 headerStyle:{
 //                     backgroundColor:'transparent'
 //                 },
 //                 headerTintColor: '#1F29397',
 //                 headerTransparent:true,
+
 //             }}
 //             initialRouteName = "Chat"
 //             >
@@ -156,4 +178,4 @@ function DashboardTopTab(){
 export {
     RootStack,
     AuthStack,
-};
+}
