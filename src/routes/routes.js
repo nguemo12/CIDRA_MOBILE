@@ -50,7 +50,7 @@ function AuthStack() {
     )
 }
 
-function RootStack() {
+  function RootStack() {
     return (
 
             <Tab.Navigator 

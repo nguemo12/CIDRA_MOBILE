@@ -1,0 +1,33 @@
+{
+  "default_branch": "master",
+  "branches": [
+    "AuthScreen",
+    "IntegrateAPI",
+    "MIThelper",
+    "chat_bot",
+    "kingBranch",
+    "master",
+    "navigation",
+    "origin"
+  ],
+  "parent": {
+    "AuthScreen": "master",
+    "IntegrateAPI": "master",
+    "MIThelper": "master",
+    "chat_bot": "master",
+    "kingBranch": "master",
+    "master": null,
+    "navigation": "master",
+    "origin": "master"
+  },
+  "order": [
+    "master",
+    "AuthScreen",
+    "IntegrateAPI",
+    "MIThelper",
+    "chat_bot",
+    "kingBranch",
+    "navigation",
+    "origin"
+  ]
+}
