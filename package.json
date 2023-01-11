@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-native-community/art": "^1.2.0",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/material-top-tabs": "^6.3.0",
     "@react-navigation/native": "^6.0.13",
@@ -26,6 +27,7 @@
     "react-native": "0.70.3",
     "react-native-asset": "^2.0.1",
     "react-native-chart-kit": "^6.12.0",
+    "react-native-chatbot": "^0.0.1-alpha.12",
     "react-native-datepicker": "^1.7.2",
     "react-native-gesture-bottom-sheet": "^1.1.0",
     "react-native-gesture-handler": "^2.8.0",
@@ -44,8 +46,9 @@
     "react-native-vector-icons": "^9.2.0",
     "react-navigation": "^4.4.4",
     "react-redux": "^8.0.5",
-    "tailwind-react-native-classnames": "^1.5.1",
-    "react-navigation": "^4.4.4"
+    "react-simple-chatbot": "^0.6.1",
+    "styled-components": "^5.3.6",
+    "tailwind-react-native-classnames": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -21,6 +21,7 @@ const BottomNav = () => {
             <TabNavigator.Navigator 
             screenOptions={
                 {
+            
                     tabBarStyle: {
                         backgroundColor:"#003D79",
                     },

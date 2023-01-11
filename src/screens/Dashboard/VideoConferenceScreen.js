@@ -48,6 +48,7 @@ const VideoConferenceScreen = () => {
           />
 
         </TouchableOpacity>
+        <Chatbot/>
 
       <ImageBackground source={
           viewDefault?
